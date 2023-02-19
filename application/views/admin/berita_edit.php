@@ -3,18 +3,17 @@
         <form method="post" action="<?php echo base_url() . 'admin/berita_update' ?>" enctype="multipart/form-data" class="m-5">
             <h4 class="text-center">Data Berita</h4>
             <div class="form-group">
-                <input type="text" class="form-control border-0" name="nama" placeholder="Judul Berita" value="<?php echo  $b->Judul_berita; ?>">
-                <input type="hidden" class="form-control border-0" name="id" value="<?php echo  $b->Id_berita; ?>">
+                <input type="text" class="form-control border-0" name="nama" placeholder="Judul Berita" value="<?php echo $b->Judul_berita; ?>">
+                <input type="hidden" class="form-control border-0" name="id" value="<?php echo $b->Id_berita; ?>">
                 <?php echo form_error('nama'); ?>
+                
             </div>
             <div class="form-group">
-                <div class="form-group">
-                    <input type="hidden" name="content" value="<?= set_value('content') ?>">
-                    <div id="editor" style="min-height: 160px;"><?php echo $b->Deskripsi_berita ?>
-                        <?= set_value('content') ?>
-                    </div>
-                    <?php echo form_error('content'); ?>
+                <input type="hidden" name="content" value="<?= $b->Deskripsi_berita ?>">
+                <div id="editor" style="min-height: 160px;">
+                    <?= $b->Deskripsi_berita ?>
                 </div>
+                <?php echo form_error('content'); ?>
             </div>
 
             <div class="custom-file">
@@ -26,8 +25,7 @@
             </div>
             <div class="form-group">
                 <label class="m-3">Tanggal Publish</label>
-                <input type="date" class="form-control border-0" name="tanggal" value="<?php echo $b->Tanggal_berita ?>">
-                <?php echo form_error('tanggal'); ?>
+                <input type="date" name="tanggal" value="<?php echo date('Y-m-d'); ?>">
             </div>
             <button class="btn btn-primary my-5" name="save">Simpan</button>
         </form>

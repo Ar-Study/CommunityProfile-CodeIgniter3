@@ -7,14 +7,17 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->library('form_validation');
+        $this->load->model('Madmin');
     }
 
     public function index()
     {
-        $this->load->view('./admin/header');
+        $data['judul'] = "SpyderBit | Admin - Home";
+        $this->load->view('./admin/header',$data);
         $this->load->view('./admin/index');
         $this->load->view('./admin/footer');
     }
+
 
     public function signnin()
     {
@@ -117,5 +120,378 @@ class Admin extends CI_Controller
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
             selamat!,  Anda berhasil keluar</div>');
         redirect('admin/signnin');
+    }
+    public function berita()
+    {
+        $data['berita'] = $this->Madmin->get_data('berita')->result();
+        $data['judul'] = "SpyderBit | Admin - Berita";
+        $this->load->view('./admin/header', $data); // tambahkan tanda $ sebelum data
+        $this->load->view('./admin/berita', $data);
+        $this->load->view('./admin/footer');
+    }
+
+    public function berita_add()
+    {
+
+        $this->load->view('./admin/header');
+        $this->load->view('./admin/berita_add');
+        $this->load->view('./admin/footer');
+    }
+    public function berita_add_act()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('content', 'Content', 'required');
+        if ($this->form_validation->run() != false) {
+            $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
+            $config['upload_path']          = './img/';
+            $config['allowed_types']        = 'jpeg|jpg|png';
+            $config['max_size']             = 2048;
+            $config['file_name']            = $update_filename;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('foto')) {
+                echo "Gagal Tambah";
+            } else {
+                $foto = $this->upload->data();
+                $foto = $foto['file_name'];
+                $nama = $this->input->post('nama');
+                $isi = $this->input->post('content');
+                $data = array(
+                    'Judul_berita' => $nama,
+                    'Foto_berita' => $foto,
+                    'Deskripsi_berita' => $isi,
+                    'Tanggal_berita' => date("Y-m-j")
+                );
+                $this->Madmin->insert_data($data, 'berita');
+                redirect(base_url() . 'admin/berita');
+            }
+        } else {
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/berita_add');
+            $this->load->view('./admin/footer');
+        }
+    }
+
+    public function berita_edit($id)
+    {
+        $where = array(
+            'Id_berita' => $id
+        );
+        $data['berita'] = $this->Madmin->edit_data($where, 'berita')->result();
+        $this->load->view('./admin/header');
+        $this->load->view('./admin/berita_edit', $data);
+        $this->load->view('./admin/footer');
+    }
+
+    public function berita_update()
+    {
+        $id = $this->input->post('id');
+        $old_filename = $this->input->post('foto_old');
+        $new_filename = $_FILES['foto']['name'];
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('content', 'Content', 'required');
+        if ($this->form_validation->run() != false) {
+            $where = array(
+                'Id_berita' => $id
+            );
+            $data = array(
+                'Judul_berita' => $this->input->post('nama'),
+                'Deskripsi_berita' => $this->input->post('content'),
+                'Tanggal_berita' => $this->input->post('tanggal')
+            );
+            if ($new_filename != "") {
+                $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
+                $config = [
+                    'upload_path' => './img/',
+                    'allowed_types' => 'jpeg|jpg|png',
+                    'max_size' => 2048,
+                    'file_name' => $update_filename
+                ];
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('foto')) {
+                    if (file_exists("./img/" . $old_filename)) {
+                        unlink("./img/" . $old_filename);
+                    }
+                    $data['Foto_berita'] = $update_filename;
+                } else {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('./admin/header');
+                    $this->load->view('./admin/berita_edit', $error);
+                    $this->load->view('./admin/footer');
+                    return;
+                }
+            }
+
+            $this->Madmin->update_data($where, $data, 'berita');
+            redirect(base_url() . 'admin/berita');
+        } else {
+            $where = array(
+                'Id_berita' => $id
+            );
+            $data['berita'] = $this->Madmin->edit_data($where, 'berita')->result();
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/berita_edit', $data);
+            $this->load->view('./admin/footer');
+        }
+
+    }
+
+    public function berita_hapus()
+    {
+        $id = $this->input->post('id');
+        $where = array(
+            'Id_berita' => $id
+        );
+
+        $old_filename = $this->input->post('foto_old');
+        if (file_exists("./img/" . $old_filename)) {
+            unlink("./img/" . $old_filename);
+        }
+
+        $this->Madmin->delete_data($where, 'berita');
+        redirect(base_url() . 'admin/berita');
+    }
+
+    public function galeri()
+    {
+        $data['galeri'] = $this->Madmin->get_data('galeri')->result();
+        $this->load->view('./admin/header');
+        $this->load->view('./admin/galeri', $data);
+        $this->load->view('./admin/footer');
+    }
+    public function galeri_add()
+    {
+        $this->load->view('./admin/header');
+        $this->load->view('./admin/galeri_add');
+        $this->load->view('./admin/footer');
+    }
+    public function galeri_add_act()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi Diri', 'required');
+        if ($this->form_validation->run() != false) {
+            $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
+            $config['upload_path']          = './img/';
+            $config['allowed_types']        = 'jpeg|jpg|png';
+            $config['max_size']             = 2048;
+            $config['file_name']            = $update_filename;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('foto')) {
+                redirect(base_url() . 'admin/galeri_add');
+            } else {
+                $foto = $this->upload->data();
+                $foto = $foto['file_name'];
+                $nama = $this->input->post('nama');
+                $isi = $this->input->post('deskripsi');
+                $data = array(
+                    'Nama_foto' => $nama,
+                    'Deskripsi_foto' => $isi,
+                    'Foto' => $foto,
+                );
+                $this->Madmin->insert_data($data, 'galeri');
+                redirect(base_url() . 'admin/galeri');
+            }
+        } else {
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/galeri_add');
+            $this->load->view('./admin/footer');
+        }
+    }
+    public function galeri_edit($id)
+    {
+        $where = array(
+            'Id_foto' => $id
+        );
+        $data['galeri'] = $this->Madmin->edit_data($where, 'galeri')->result();
+        $this->load->view('./admin/header');
+        $this->load->view('./admin/galeri_edit', $data);
+        $this->load->view('./admin/footer');
+    }
+    public function galeri_update()
+    {
+        $id = $this->input->post('id');
+        $old_filename = $this->input->post('foto_old');
+        $new_filename = $_FILES['foto']['name'];
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi Diri', 'required');
+        if ($this->form_validation->run() != false) {
+            if ($new_filename == true) {
+                $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
+                $config = [
+                    'upload_path' => './img/',
+                    'allowed_types' => 'jpeg|jpg|png',
+                    'max_size' => 2048,
+                    'file_name' => $update_filename
+                ];
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('foto')) {
+                    if (file_exists("./img/" . $old_filename)) {
+                        unlink("./img/" . $old_filename);
+                    }
+                } else {
+                    $update_filename = $old_filename;
+                }
+
+                $where = array(
+                    'Id_foto' => $id
+                );
+
+                $data = array(
+                    'Nama_foto' => $this->input->post('nama'),
+                    'Deskripsi_foto' => $this->input->post('deskripsi'),
+                    'Foto' => $update_filename
+                );
+                $this->Madmin->update_data($where, $data, 'galeri');
+                redirect(base_url() . 'admin/galeri');
+            } else {
+                redirect(base_url() . 'admin/galeri');
+            }
+        } else {
+            $where = array(
+                'Id_foto' => $id
+            );
+            $data['galeri'] = $this->Madmin->edit_data($where, 'galeri')->result();
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/galeri_edit', $data);
+            $this->load->view('./admin/footer');
+        }
+    }
+    public function galeri_hapus()
+    {
+        $id = $this->input->post('id');
+        $where = array(
+            'Id_foto' => $id
+        );
+
+        $old_filename = $this->input->post('foto_old');
+        if (file_exists("./img/" . $old_filename)) {
+            unlink("./img/" . $old_filename);
+            $this->Madmin->delete_data($where, 'galeri');
+        }
+        redirect(base_url() . 'admin/galeri');
+    }
+    public function kegiatan()
+    {
+        $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
+        $this->load->view('./admin/header');
+        $this->load->view('./admin/kegiatan', $data);
+        $this->load->view('./admin/footer');
+    }
+    public function kegiatan_add()
+    {
+        $this->load->view('./admin/header');
+        $this->load->view('./admin/kegiatan_add');
+        $this->load->view('./admin/footer');
+    }
+    public function kegiatan_add_act()
+    {
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('content', 'Content', 'required');
+        if ($this->form_validation->run() != false) {
+            $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
+            $config['upload_path']          = './img/';
+            $config['allowed_types']        = 'jpeg|jpg|png';
+            $config['max_size']             = 2048;
+            $config['file_name']            = $update_filename;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('foto')) {
+                echo "Gagal Tambah";
+            } else {
+                $foto = $this->upload->data();
+                $foto = $foto['file_name'];
+                $nama = $this->input->post('nama');
+                $isi = $this->input->post('content');
+                $data = array(
+                    'nama_kegiatan' => $nama,
+                    'logo_kegiatan' => $foto,
+                    'isi_kegiatan' => $isi
+                );
+                $this->Madmin->insert_data($data, 'kegiatan');
+                redirect(base_url() . 'admin/kegiatan');
+            }
+        } else {
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/kegiatan_add');
+            $this->load->view('./admin/footer');
+        }
+    }
+    public function kegiatan_edit($id)
+    {
+        $where = array(
+            'id_kegiatan' => $id
+        );
+        $data['kegiatan'] = $this->Madmin->edit_data($where, 'kegiatan')->result();
+        $this->load->view('./admin/header');
+        $this->load->view('./admin/kegiatan_edit', $data);
+        $this->load->view('./admin/footer');
+    }
+
+    public function kegiatan_update()
+    {
+        $id = $this->input->post('id');
+        $old_filename = $this->input->post('foto_old');
+        $new_filename = $_FILES['foto']['name'];
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('content', 'Content', 'required');
+        if ($this->form_validation->run() != false) {
+            if ($new_filename == true) {
+                $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
+                $config = [
+                    'upload_path' => './img/',
+                    'allowed_types' => 'jpeg|jpg|png',
+                    'max_size' => 2048,
+                    'file_name' => $update_filename
+                ];
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('foto')) {
+                    if (file_exists("./img/" . $old_filename)) {
+                        unlink("./img/" . $old_filename);
+                    }
+                } else {
+                    $update_filename = $old_filename;
+                }
+
+                $where = array(
+                    'id_kegiatan' => $id
+                );
+
+                $data = array(
+                    'nama_kegiatan' => $this->input->post('nama'),
+                    'logo_kegiatan' => $update_filename,
+                    'isi_kegiatan' => $this->input->post('content'),
+                );
+                $this->Madmin->update_data($where, $data, 'kegiatan');
+                redirect(base_url() . 'admin/kegiatan');
+            } else {
+                redirect(base_url() . 'admin/kegiatan');
+            }
+        } else {
+            $where = array(
+                'id_kegiatan' => $id
+            );
+            $data['kegiatan'] = $this->Madmin->edit_data($where, 'kegiatan')->result();
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/kegiatan_edit', $data);
+            $this->load->view('./admin/footer');
+        }
+    }
+    public function kegiatan_hapus()
+    {
+        $id = $this->input->post('id');
+        $where = array(
+            'id_kegiatan' => $id
+        );
+
+        $old_filename = $this->input->post('foto_old');
+        if (file_exists("./img/" . $old_filename)) {
+            unlink("./img/" . $old_filename);
+            $this->Madmin->delete_data($where, 'kegiatan');
+        }
+        redirect(base_url() . 'admin/kegiatan');
     }
 }

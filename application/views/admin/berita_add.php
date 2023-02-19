@@ -17,8 +17,7 @@
         </div>
         <div class="form-group">
             <label class="m-3">Tanggal Publish</label>
-            <input type="date" class="form-control border-0" name="tanggal">
-            <?php echo form_error('tanggal'); ?>
+            <?php echo date("Y-m-j"); ?>
         </div>
         <button class="btn btn-primary my-5" name="save">Simpan</button>
     </form>

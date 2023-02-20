@@ -256,7 +256,8 @@ class Admin extends CI_Controller
     public function galeri()
     {
         $data['galeri'] = $this->Madmin->get_data('galeri')->result();
-        $this->load->view('./admin/header');
+        $data['judul'] = "SpyderBit | Admin - Gallery";
+        $this->load->view('./admin/header', $data);
         $this->load->view('./admin/galeri', $data);
         $this->load->view('./admin/footer');
     }
@@ -280,7 +281,7 @@ class Admin extends CI_Controller
             $this->load->library('upload', $config);
 
             if (!$this->upload->do_upload('foto')) {
-                redirect(base_url() . 'admin/galeri_add');
+                echo "Gagal Tambah";
             } else {
                 $foto = $this->upload->data();
                 $foto = $foto['file_name'];
@@ -312,52 +313,53 @@ class Admin extends CI_Controller
     }
     public function galeri_update()
     {
+    
         $id = $this->input->post('id');
         $old_filename = $this->input->post('foto_old');
         $new_filename = $_FILES['foto']['name'];
+
         $this->form_validation->set_rules('nama', 'Nama', 'required');
-        $this->form_validation->set_rules('deskripsi', 'Deskripsi Diri', 'required');
+        $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+
         if ($this->form_validation->run() != false) {
-            if ($new_filename == true) {
+            $where = array('Id_foto' => $id);
+            $data = array(
+                'Nama_foto' => $this->input->post('nama'),
+                'Deskripsi_foto' => $this->input->post('deskripsi')
+            );
+            if ($new_filename != "") {
                 $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
-                $config = [
+                $config = array(
                     'upload_path' => './img/',
                     'allowed_types' => 'jpeg|jpg|png',
                     'max_size' => 2048,
                     'file_name' => $update_filename
-                ];
+                );
                 $this->load->library('upload', $config);
                 if ($this->upload->do_upload('foto')) {
                     if (file_exists("./img/" . $old_filename)) {
                         unlink("./img/" . $old_filename);
                     }
+                    $data['Foto'] = $update_filename;
                 } else {
-                    $update_filename = $old_filename;
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('./admin/header');
+                    $this->load->view('./admin/galeri_edit', $error);
+                    $this->load->view('./admin/footer');
+                    return;
                 }
-
-                $where = array(
-                    'Id_foto' => $id
-                );
-
-                $data = array(
-                    'Nama_foto' => $this->input->post('nama'),
-                    'Deskripsi_foto' => $this->input->post('deskripsi'),
-                    'Foto' => $update_filename
-                );
-                $this->Madmin->update_data($where, $data, 'galeri');
-                redirect(base_url() . 'admin/galeri');
-            } else {
-                redirect(base_url() . 'admin/galeri');
             }
+
+            $this->Madmin->update_data($where, $data, 'galeri');
+            redirect(base_url() . 'admin/galeri');
         } else {
-            $where = array(
-                'Id_foto' => $id
-            );
+            $where = array('Id_foto' => $id);
             $data['galeri'] = $this->Madmin->edit_data($where, 'galeri')->result();
             $this->load->view('./admin/header');
             $this->load->view('./admin/galeri_edit', $data);
             $this->load->view('./admin/footer');
         }
+
     }
     public function galeri_hapus()
     {
@@ -369,8 +371,9 @@ class Admin extends CI_Controller
         $old_filename = $this->input->post('foto_old');
         if (file_exists("./img/" . $old_filename)) {
             unlink("./img/" . $old_filename);
-            $this->Madmin->delete_data($where, 'galeri');
         }
+
+        $this->Madmin->delete_data($where, 'galeri');
         redirect(base_url() . 'admin/galeri');
     }
     public function kegiatan()

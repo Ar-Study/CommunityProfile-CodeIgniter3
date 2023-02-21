@@ -83,8 +83,7 @@
       <div class="row mb-5 justify-content-center" data-aos="fade-up">
         <div class="col-md-8 text-center">
           <h2 class="mb-4 section-title">Gallery Kegiatan Komunitas Programmer Millenial</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis accusamus perferendis
-            libero accusantium nisi.</p>
+          <p> kumpulan atau koleksi foto dan video yang menampilkan kegiatan atau acara yang telah dilakukan oleh komunitas spyderbit.</p>
         </div>
       </div>
     </div>
@@ -93,8 +92,8 @@
         <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="100">
           <div class="work-thumb">
             <div class="work-text">
-              <h2>Lorem Ipsum</h2>
-              <p>Amet</p>
+              <h2>Kumpul Bareng Komunitas</h2>
+              <p>Sokaraja</p>
             </div>
             <img src="<?php echo base_url('assets/frontend/') ?>images/gallery_1.jpg" alt="Image" class="img-fluid">
           </div>
@@ -102,8 +101,8 @@
         <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
           <div class="work-thumb">
             <div class="work-text">
-              <h2>Lorem Ipsum</h2>
-              <p>Amet</p>
+              <h2>Kumpul Bareng Komunitas</h2>
+              <p>Sokaraja</p>
             </div>
             <img src="<?php echo base_url('assets/frontend/') ?>images/gallery_2.jpg" alt="Image" class="img-fluid">
           </div>
@@ -122,14 +121,12 @@
         <div class="col-lg-5 ml-auto mb-5 order-2">
         <span class="d-block text-uppercase text-primary" data-aos="fade-up">Siapa Kita</span>
           <h2 class="mb-4 section-title animated slideInLeft">Lakukan Hal-Hal yang Penting. Rencana. Membuat. Tumbuh.</h2>
-        <p data-aos="fade-up">Lorem ipsum dolor sit amet consectetur adipisicing elit. Id autem temporibus blanditiis accusamus perferendis libero accusantium nisi itaque tempore, harum aliquid aut, sapiente dolor tenetur. Tempora corrupti suscipit delectus perspiciatis!</p>
-        <p class="mb-5" data-aos="fade-up">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, voluptatibus.</p>
-        <p><a href="#" class="btn btn-outline-black" data-aos="fade-right">Belajarlah Lagi</a></p>
+        <p data-aos="fade-up">Komunitas Programmer merupakan sebuah komunitas koding di daerah Banyumas. Yang menyediakan forum untuk web developer dan programmer lainnya. Disamping itu komunitas programmer juga untuk diskusi seputar web development, programming, design, ataupun seputar IT lainnya.</p>
+        <p><a href="#" class="btn btn-outline-black" data-aos="fade-right">Kenali Lebih Lanjut</a></p>
         </div>
         <div class="col-lg-6 order-1">
           <figure class="img-dotted-bg">
-          <img src="<?php echo base_url('assets/frontend/') ?>images/about_1.jpg" alt="Image" class="img-fluid" data-aos="fade-left">
-            <img src="<?php echo base_url('assets/frontend/') ?>images/profile_1.jpg" alt="Image" class="img-fluid img-absolute" data-aos="fade-left">
+          <img src="<?php echo base_url('assets/frontend/') ?>images/profile_1.jpg" alt="Image" class="img-fluid" data-aos="fade-left">
           </figure>
         </div>
       </div>

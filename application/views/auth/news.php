@@ -84,27 +84,17 @@
 							<div class="row">
 							<div class="col-md-6 form-group">
             <div>
-            <img src="<?php echo base_url('assets/frontend/') ?>images/berita_1.jpg" alt="Image" class="img-fluid img-absolute" data-aos="fade-left">
-						<div class="service">
-            <a href="contact.html">
-							<h3>Tampilan Samsung Galaxy Watch4 yang hadir di pasar Indonesia. Kredit: Samsung Electronics Indonesia Studi Klaim Sensor Samsung Galaxy Watch4 Sangat Mirip dengan Alat Medis</h3>
-							<p style="color:Gray;">Para peneliti menemukan bahwa sensor Galaxy Watch4 sedikit lebih andal daripada instrumen medis standar yang dikenakan di pergelangan tangan.</p>
-						</div>
-					</div>
-					<br>
-            <img src="<?php echo base_url('assets/frontend/') ?>images/berita_2.jpg" alt="Image" class="img-fluid img-absolute" data-aos="fade-left">
-					<div class="service"><a href="contact.html">
-						<h3>Teknologi Antivirus New Queen Series SHARP Bikin Adem di Hati</h3>
-							<p style="color: gray;">Teknologi Plasmacluster telah diriset dan diuji coba SHARP lebih dari 20 tahun yang lalu, dan pada tahun 2020 telah dilakukan penelitian yang membuktikan.</p>
-						</div>
-						<br>
-              <img src="<?php echo base_url('assets/frontend/') ?>images/berita_3.jpg" alt="Image" class="img-fluid img-absolute" data-aos="fade-left">
-						<div class="service"><a href="contact.html">
-						<h3>Strategi Lenovo Hadapi Persaingan Panas Bisnis Laptop</h3>
-							<p style="color: gray;">Jakarta - Lenovo adalah pemain lama di bisnis laptop, namun belakangan persaingan di bisnis tersebut semakin ketat karena munculnya banyak pemain baru. Lalu bagaimana strategi Lenovo dalam menghadapi persaingan tersebut?</p>
-						</div>
-						<br>
-						<nav aria-label="...">
+            <?php foreach ($berita as $b) { ?>
+              <img src="<?php echo base_url('img/') . $b->Foto_berita?>" alt="Image" class="img-fluid img-absolute" data-aos="fade-left">
+              <div class="service">
+              <a href="contact.html">
+                <h3><?= $b->Judul_berita; ?></h3>
+                <p style="color:Gray;"><?= $b->Deskripsi_berita; ?></p>
+              </div>
+            <br>
+
+           <?php } ?>
+            <nav aria-label="...">
               <ul class="pagination">
                 <li class="page-item disabled">
                   <a class="page-link">Page</a>

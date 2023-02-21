@@ -73,64 +73,19 @@
           <br>
           </div>
         </div>
+        <?php foreach ($galeri as $g) { ?>
         <div class="row">
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
-            <div class="media d-block media-custom text-center">
-              <a target="_blank" href="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg"><img src="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg" alt="Image Placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Laura Smith</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam minus repudiandae amet.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="200">
-            <div class="media d-block media-custom text-center">
-              <a target="_blank" href="<?php echo base_url('assets/frontend/') ?>images/person_2.jpg"><img src="<?php echo base_url('assets/frontend/') ?>images/person_2.jpg" alt="Image Placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Mike Richardson</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam minus repudiandae amet.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
-            <div class="media d-block media-custom text-center">
-              <a target="_blank" href="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg"><img src="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg" alt="Image Placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Laura Smith</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam minus repudiandae amet.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="400">
-            <div class="media d-block media-custom text-center">
-              <a target="_blank" href="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg"><img src="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg" alt="Image Placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Laura Smith</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam minus repudiandae amet.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="500">
-            <div class="media d-block media-custom text-center">
-              <a target="_blank" href="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg"><img src="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg" alt="Image Placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Laura Smith</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam minus repudiandae amet.</p>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="600">
-            <div class="media d-block media-custom text-center">
-              <a target="_blank" href="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg"><img src="<?php echo base_url('assets/frontend/') ?>images/person_1.jpg" alt="Image Placeholder" class="img-fluid"></a>
-              <div class="media-body">
-                <h3 class="mt-0 text-black">Laura Smith</h3>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam minus repudiandae amet.</p>
-              </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="media d-block media-custom text-center">
+            <a target="_blank" href="<?php echo base_url('img/') . $g->Foto  ?>">
+            <img src="<?php echo base_url('img/') . $g->Foto ?>"alt="Image Placeholder" class="img-fluid"></a>
+            <div class="media-body">
+              <h3 class="mt-0 text-black"><?php echo $g->Nama_foto ?></h3>
+              <p><?= $g->Deskripsi_foto; ?></p>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+        <?php } ?>
     <div class="bg-white py-5">
       <div class="container">
           <div class="col-lg-7">

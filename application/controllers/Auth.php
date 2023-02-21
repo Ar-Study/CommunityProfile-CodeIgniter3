@@ -3,6 +3,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Auth extends CI_Controller
 {
+    public function __construct()
+    {
+        parent::__construct();
+        $this->load->library('form_validation');
+        $this->load->model('Madmin');
+    }
     public function index()
     {
         $data['title'] =  "Komunitas Programmer Millenial | Diskusi, Berkarya, Dan Berkontribusi";
@@ -30,8 +36,9 @@ class Auth extends CI_Controller
     public function gallery()
     {
         $data['title'] =  "Komunitas Programmer Millenial | Galeri";
+        $data['galeri'] = $this->Madmin->get_data('galeri')->result();
         $this->load->view('frontend/auth_header', $data);
-        $this->load->view('auth/gallery');
+        $this->load->view('auth/gallery', $data);
         $this->load->view('frontend/auth_footer');
     }
 
@@ -54,8 +61,9 @@ class Auth extends CI_Controller
     public function news()
     {
         $data['title'] =  "Komunitas Programmer Millenial | Berita";
+        $data['berita'] = $this->Madmin->get_data('berita')->result();
         $this->load->view('frontend/auth_header', $data);
-        $this->load->view('auth/news');
+        $this->load->view('auth/news',$data);
         $this->load->view('frontend/auth_footer');
     }
 

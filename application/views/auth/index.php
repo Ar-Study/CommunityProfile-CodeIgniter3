@@ -44,6 +44,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kegiatan Kami</a>
               <div class="dropdown-menu">
                 <a href="<?= base_url('auth/activity'); ?>" class="dropdown-item">Jenis Kegiatan</a>
+                <a href="<?= base_url('auth/activity'); ?>" class="dropdown-item">Foto Kegiatan</a>
               </div>
             </li>
             <li class="nav-item">
@@ -51,6 +52,9 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('auth/contact'); ?>">Kontak</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('member/login'); ?>">Login</a>
             </li>
           </ul>
           <div class="navbar-nav ml-auto">
@@ -122,7 +126,7 @@
         <span class="d-block text-uppercase text-primary" data-aos="fade-up">Siapa Kita</span>
           <h2 class="mb-4 section-title animated slideInLeft">Lakukan Hal-Hal yang Penting. Rencana. Membuat. Tumbuh.</h2>
         <p data-aos="fade-up">Komunitas Programmer merupakan sebuah komunitas koding di daerah Banyumas. Yang menyediakan forum untuk web developer dan programmer lainnya. Disamping itu komunitas programmer juga untuk diskusi seputar web development, programming, design, ataupun seputar IT lainnya.</p>
-        <p><a href="#" class="btn btn-outline-black" data-aos="fade-right">Kenali Lebih Lanjut</a></p>
+        <p><a href="<?php echo base_url("auth/profile") ?>" class="btn btn-outline-black" data-aos="fade-right">Kenali Lebih Lanjut</a></p>
         </div>
         <div class="col-lg-6 order-1">
           <figure class="img-dotted-bg">
@@ -138,28 +142,28 @@
         <div class="col-lg-3 mb-4">
           <div class="service" data-aos="fade-up" data-aos-delay="">
             <span class="icon icon-fire mb-4 d-block"></span>
-            <h3>Lorem</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias id volume amet.</p>
+            <h3>Pelatihan</h3>
+            <p>Pelatihan kepada anggota untuk meningkatkan keterampilan dalam pemrograman sehingga dapat membuka peluang untuk karir di indsutri teknologi yang berkembang pesat</p>
           </div>
         </div>
         <div class="col-lg-3 mb-4">
           <div class="service" data-aos="fade-up" data-aos-delay="100">
             <span class="icon icon-screen-desktop mb-4 d-block"></span>
-            <h3>Lorem</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias id volume amet.</p>
+            <h3>Pembuatan Web</h3>
+            <p>Membuatkan website profesional dan responsif yang sesuai dengan kebutuhan bisnis atau personal.</p>
           </div>
         </div>
         <div class="col-lg-3 mb-4">
           <div class="service" data-aos="fade-up" data-aos-delay="200">
             <span class="icon icon-screen-smartphone mb-4 d-block"></span>
-            <h3>Lorem</h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias id volume amet.</p>
+            <h3>Pembuatan Software / Aplikasi</h3>
+            <p>Jasa pembuatan aplikasi atau software dapat membantu memenuhi kebutuhan bisnis atau personal dengan mengembangkan solusi digital yang inovatif dan efektif.</p>
           </div>
         </div>
         <div class="col-lg-3 mb-4">
           <div class="service" data-aos="fade-up" data-aos-delay="300">
             <span class="icon icon-mouse mb-4 d-block"></span>
-            <h3>Lorem</h3>
+            <h3>Desain </h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias id volume amet.</p>
           </div>
         </div>
@@ -253,8 +257,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-7">
           <h3 class="text-white mb-2 font-weight-normal" data-aos="fade-right" data-aos-delay="">Mari berbuat lebih banyak bersama-sama kami</h3>
-          <p class="text-white mb-4" data-aos="fade-right" data-aos-delay="100">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-          <p class="mb-0" data-aos="fade-right" data-aos-delay="200"><a href="contact.html" class="btn btn-outline-white px-4 py-3">Gabung Sekarang</a></p>
+          <p class="mb-0" data-aos="fade-right" data-aos-delay="200"><a href="<?= base_url("member/login"); ?>" class="btn btn-outline-white px-4 py-3">Gabung Sekarang</a></p>
         </div>
       </div>
     </div>

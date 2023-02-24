@@ -43,6 +43,7 @@
             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kegiatan Kami</a>
               <div class="dropdown-menu">
                 <a href="<?= base_url('auth/activity'); ?>" class="dropdown-item">Jenis Kegiatan</a>
+                <a href="<?= base_url('auth/activity'); ?>" class="dropdown-item">Foto Kegiatan</a>
               </div>
             </li>
             <li class="nav-item">

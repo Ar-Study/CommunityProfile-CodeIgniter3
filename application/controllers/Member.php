@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class Admin extends CI_Controller
+class Member extends CI_Controller
 {
     public function __construct()
     {
@@ -19,55 +19,49 @@ class Admin extends CI_Controller
     }
 
 
-    public function signnin()
+    public function login()
     {
         $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
-        $this->form_validation->set_rules('password', 'password', 'trim|required');
+        $this->form_validation->set_rules('password', 'Password', 'trim|required');
         if ($this->form_validation->run() == false) {
             $data['title'] = 'Sign In Administrator';
             $this->load->view('backend/admin_header', $data);
-            $this->load->view('admin/signnin');
+            $this->load->view('member/signnin');
             $this->load->view('backend/admin_footer');
         } else {
-            // sukses validasinya
-            $this->_signnin();
+            $this->_signins();
         }
     }
 
-    private function _signnin()
+    private function _signins()
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-        // usernya ada
         if ($user) {
-            // jika usernya aktif
-            if ($user['is_active'] == 1 && $user['role_id'] == 2) {
-                // cek password
+            if ($user['is_active'] == 1 && $user['role_id'] == 1) {
                 if (password_verify($password, $user['password'])) {
                     $data = [
                         'email' => $user['email'],
                         'role' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
-                    redirect('./admin/');
+                    redirect('member');
                 } else {
-                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            password salah!</div>');
-                    redirect('admin/signnin');
+                    $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Password salah!</div>');
+                    redirect('member/login');
                 }
             } else {
-                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Email belum diaktivasi!</div>');
-                redirect('admin/signnin');
+                $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email tidak diaktivasi atau tidak memiliki hak akses!</div>');
+                redirect('member/login');
             }
         } else {
-            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Email belum terdaftar!</div>');
-            redirect('admin/signnin');
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">Email belum terdaftar!</div>');
+            redirect('member/login');
         }
     }
+
 
 
     public function registration()

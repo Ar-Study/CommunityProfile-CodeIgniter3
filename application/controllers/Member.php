@@ -13,9 +13,9 @@ class Member extends CI_Controller
     public function index()
     {
         $data['judul'] = "SpyderBit | Admin - Home";
-        $this->load->view('./admin/header',$data);
-        $this->load->view('./admin/index');
-        $this->load->view('./admin/footer');
+        $this->load->view('frontend/auth_header',$data);
+        $this->load->view('./member/index');
+        $this->load->view('frontend/auth_footer');
     }
 
 

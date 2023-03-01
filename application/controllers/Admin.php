@@ -8,10 +8,16 @@ class Admin extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('Madmin');
+       
     }
 
     public function index()
     {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }else {
+            # code...
+        }
         $data['judul'] = "SpyderBit | Admin - Home";
         $this->load->view('./admin/header',$data);
         $this->load->view('./admin/index');
@@ -114,6 +120,9 @@ class Admin extends CI_Controller
 
     public function logout()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
 
@@ -123,6 +132,9 @@ class Admin extends CI_Controller
     }
     public function berita()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $data['berita'] = $this->Madmin->get_data('berita')->result();
         $data['judul'] = "SpyderBit | Admin - Berita";
         $this->load->view('./admin/header', $data); // tambahkan tanda $ sebelum data
@@ -132,6 +144,9 @@ class Admin extends CI_Controller
 
     public function berita_add()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
 
         $this->load->view('./admin/header');
         $this->load->view('./admin/berita_add');
@@ -139,6 +154,9 @@ class Admin extends CI_Controller
     }
     public function berita_add_act()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('content', 'Content', 'required');
         if ($this->form_validation->run() != false) {
@@ -175,6 +193,9 @@ class Admin extends CI_Controller
 
     public function berita_edit($id)
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $where = array(
             'Id_berita' => $id
         );
@@ -186,6 +207,9 @@ class Admin extends CI_Controller
 
     public function berita_update()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $id = $this->input->post('id');
         $old_filename = $this->input->post('foto_old');
         $new_filename = $_FILES['foto']['name'];
@@ -239,6 +263,9 @@ class Admin extends CI_Controller
 
     public function berita_hapus()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $id = $this->input->post('id');
         $where = array(
             'Id_berita' => $id
@@ -255,6 +282,9 @@ class Admin extends CI_Controller
 
     public function galeri()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $data['galeri'] = $this->Madmin->get_data('galeri')->result();
         $data['judul'] = "SpyderBit | Admin - Gallery";
         $this->load->view('./admin/header', $data);
@@ -263,12 +293,18 @@ class Admin extends CI_Controller
     }
     public function galeri_add()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $this->load->view('./admin/header');
         $this->load->view('./admin/galeri_add');
         $this->load->view('./admin/footer');
     }
     public function galeri_add_act()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi Diri', 'required');
         if ($this->form_validation->run() != false) {
@@ -303,6 +339,9 @@ class Admin extends CI_Controller
     }
     public function galeri_edit($id)
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $where = array(
             'Id_foto' => $id
         );
@@ -313,7 +352,9 @@ class Admin extends CI_Controller
     }
     public function galeri_update()
     {
-    
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $id = $this->input->post('id');
         $old_filename = $this->input->post('foto_old');
         $new_filename = $_FILES['foto']['name'];
@@ -363,6 +404,9 @@ class Admin extends CI_Controller
     }
     public function galeri_hapus()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $id = $this->input->post('id');
         $where = array(
             'Id_foto' => $id
@@ -378,6 +422,9 @@ class Admin extends CI_Controller
     }
     public function kegiatan()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
         $this->load->view('./admin/header');
         $this->load->view('./admin/kegiatan', $data);
@@ -385,12 +432,18 @@ class Admin extends CI_Controller
     }
     public function kegiatan_add()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $this->load->view('./admin/header');
         $this->load->view('./admin/kegiatan_add');
         $this->load->view('./admin/footer');
     }
     public function kegiatan_add_act()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('content', 'Content', 'required');
         if ($this->form_validation->run() != false) {
@@ -425,6 +478,9 @@ class Admin extends CI_Controller
     }
     public function kegiatan_edit($id)
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $where = array(
             'id_kegiatan' => $id
         );
@@ -436,6 +492,9 @@ class Admin extends CI_Controller
 
     public function kegiatan_update()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $id = $this->input->post('id');
         $old_filename = $this->input->post('foto_old');
         $new_filename = $_FILES['foto']['name'];
@@ -485,6 +544,9 @@ class Admin extends CI_Controller
     }
     public function kegiatan_hapus()
     {
+        if (!$this->session->userdata('admin_id')) {
+            redirect('admin/signnin');
+        }
         $id = $this->input->post('id');
         $where = array(
             'id_kegiatan' => $id
@@ -497,4 +559,5 @@ class Admin extends CI_Controller
         }
         redirect(base_url() . 'admin/kegiatan');
     }
+
 }

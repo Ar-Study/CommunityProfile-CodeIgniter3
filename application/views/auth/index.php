@@ -2,25 +2,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="https://fonts.googleapis.com/css?family=DM+Serif+Display:400,400i|Roboto+Mono&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/jquery.fancybox.min.css">
-    <link rel="stylesheet" href="fonts/ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" href="fonts/fontawesome/css/font-awesome.min.css">
-    <link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
-    <link rel="stylesheet" href="css/aos.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+  <title><?= $title;?></title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <!-- THEME STYLE -->
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="shortcut icon" href="<?php echo base_url('vendor/frontend/kpm/logo/') ?>Untitled-001.png">
+
+  <link href="<?php echo base_url('assets/frontend/') ?>https://fonts.googleapis.com/css?family=DM+Serif+Display:400,400i|Roboto+Mono&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/animate.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/owl.carousel.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>fonts/ionicons/css/ionicons.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>fonts/fontawesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>fonts/flaticon/font/flaticon.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/aos.css">
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
+
+  <!-- Theme Style -->
+  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/style.css">
 </head>
 
 <body>
   <header role="banner">
     <nav class="navbar navbar-expand-lg  bg-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="<?= base_url('auth/index'); ?>">K P M</a>
+        <a class="navbar-brand" href="<?= base_url('auth/index'); ?>">SpyderBIT</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05"
           aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -53,9 +61,7 @@
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('auth/contact'); ?>">Kontak</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('member/login'); ?>">Login</a>
-            </li>
+            
           </ul>
           <div class="navbar-nav ml-auto">
             <form method="post" class="search-form" action="<?= base_url('auth/gallery'); ?>">
@@ -269,8 +275,7 @@
       <div class="row mb-5">
         <div class="col-md-4 mb-5">
           <h3 class="mb-4">Tentang Kami</h3>
-          <p class="mb-5">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Alias nihil numquam aspernatur
-            inventore sint eligendi nostrum!</p>
+          <p class="mb-5">Komunitas Programmer merupakan sebuah komunitas koding di daerah Banyumas. Yang menyediakan forum untuk web developer dan programmer lainnya. Disamping itu komunitas programmer juga untuk diskusi seputar web development, programming, design, ataupun seputar IT lainnya.</p>
           <ul class="list-unstyled footer-link d-flex footer-social">
             <li><a href="#" class="p-2"><span class="fa fa-twitter"></span></a></li>
             <li><a href="#" class="p-2"><span class="fa fa-facebook"></span></a></li>
@@ -327,17 +332,17 @@
     </svg>
   </div>
   <!-- END LOADER -->
-
-  <script src="js/jquery-3.2.1.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.fancybox.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/main.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/jquery-3.2.1.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/popper.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/bootstrap.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/jquery.waypoints.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/owl.carousel.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/jquery.waypoints.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/jquery.fancybox.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/jquery.stellar.min.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/aos.js"></script>
+  <script src="<?php echo base_url('assets/frontend/') ?>js/main.js"></script>
 </body>
 
 </html>

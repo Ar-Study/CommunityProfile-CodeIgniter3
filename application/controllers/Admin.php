@@ -15,8 +15,6 @@ class Admin extends CI_Controller
     {
         if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
-        }else {
-            # code...
         }
         $data['judul'] = "SpyderBit | Admin - Home";
         $this->load->view('./admin/header',$data);

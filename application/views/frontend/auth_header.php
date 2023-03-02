@@ -27,3 +27,41 @@
 </head>
 
 <body>
+  <header role="banner">
+    <nav class="navbar navbar-expand-lg  bg-dark">
+      <div class="container-fluid">
+        <a class="navbar-brand " href="<?= base_url('auth/index'); ?>">SpyderBIT</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05"
+          aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarsExample05">
+          <ul class="navbar-nav pl-md-5 ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('auth/index'); ?>">Beranda</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle active" data-toggle="dropdown">Profil</a>
+                <div class="dropdown-menu">
+                  <a href="<?= base_url('auth/profile'); ?>" class="dropdown-item">Pengertian Profil Komunitas</a>
+                  <a href="<?= base_url('auth/profile_management'); ?>" class="dropdown-item">Dewan Kepengurusan</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('auth/gallery'); ?>">Galeri</a>
+            </li>
+            <li class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kegiatan Kami</a>
+                <div class="dropdown-menu">
+                  <a href="<?= base_url('auth/activity'); ?>" class="dropdown-item">Jenis Kegiatan</a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('auth/contact'); ?>">Kontak</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- END HEADER -->

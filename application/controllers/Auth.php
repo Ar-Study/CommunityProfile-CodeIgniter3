@@ -12,9 +12,7 @@ class Auth extends CI_Controller
     public function index()
     {
         $data['title'] =  "Komunitas Programmer Millenial | Diskusi, Berkarya, Dan Berkontribusi";
-        $this->load->view('frontend/auth_header', $data);
-        $this->load->view('auth/index');
-        $this->load->view('frontend/auth_footer');
+        $this->load->view('auth/index', $data);
     }
 
     public function profile()

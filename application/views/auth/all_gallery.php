@@ -13,6 +13,7 @@
     <div class="container">
       <div class="row mb-2 justify-content-center" data-aos="fade-up">
         <div class="col-md-2 text-center">
+          <h2>Kegiatan</h2>
         </div>
       </div>
     </div>

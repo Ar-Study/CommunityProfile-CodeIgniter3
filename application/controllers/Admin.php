@@ -121,6 +121,7 @@ class Admin extends CI_Controller
         if (!$this->session->userdata('admin_id')) {
             redirect('admin/signnin');
         }
+        
         $this->session->unset_userdata('email');
         $this->session->unset_userdata('role_id');
 

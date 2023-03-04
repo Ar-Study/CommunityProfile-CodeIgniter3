@@ -9,17 +9,18 @@
   <link rel="shortcut icon" href="<?php echo base_url('vendor/frontend/kpm/logo/') ?>Untitled-001.png">
 
   <link href="<?php echo base_url('assets/frontend/') ?>https://fonts.googleapis.com/css?family=DM+Serif+Display:400,400i|Roboto+Mono&display=swap" rel="stylesheet">
+  <link rel="shortcut icon" href="<?php echo base_url('vendor/frontend/kpm/logo/'); ?>Untitled-001.png">
+	<link href="https://fonts.googleapis.com/css?family=DM+Serif+Display:400,400i|Roboto+Mono&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/animate.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/owl.carousel.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/jquery.fancybox.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/frontend/fonts/ionicons/css/ionicons.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/frontend/fonts/fontawesome/css/font-awesome.min.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/frontend/fonts/flaticon/font/flaticon.css'); ?>">
+	<link rel="stylesheet" href="<?php echo base_url('assets/frontend/css/aos.css'); ?>">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
 
-  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/animate.css">
-  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/owl.carousel.min.css">
-  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/jquery.fancybox.min.css">
-
-  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>fonts/ionicons/css/ionicons.min.css">
-  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>fonts/fontawesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>fonts/flaticon/font/flaticon.css">
-  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/aos.css">
-  <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.css">
-
+  
   <!-- Theme Style -->
   <link rel="stylesheet" href="<?php echo base_url('assets/frontend/') ?>css/style.css">
 </head>
@@ -63,12 +64,6 @@
             </li>
             
           </ul>
-          <div class="navbar-nav ml-auto">
-            <form method="post" class="search-form" action="<?= base_url('auth/gallery'); ?>">
-              <span class="icon ion ion-search"></span>
-              <input type="text" class="form-control" placeholder="Cari..." required>
-            </form>
-          </div>
         </div>
       </div>
     </nav>
@@ -79,7 +74,7 @@
     <div class="container">
       <div class="row slider-text align-items-center justify-content-center">
         <div class="col-lg-12 text-center col-sm-12">
-          <p data-aos="fade-up" data-aos="fade-up" data-aos-delay="">Profil komunitas Programmer isinya apa? <a href="https://www.dicoding.com/blog/apa-itu-programmer-hal-yang-wajib-dikuasai/" target="_blank">Lihat Selengkapnya</a></p>
+          <p data-aos="fade-up" data-aos="fade-up" data-aos-delay="">Komunitas Programmer isinya apa? <a href="" target="_blank">Lihat Selengkapnya</a></p>
           <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">Kami membuat hal yang luar biasa.</h1>
           <div class="btn-play-wrap mx-auto" data-aos="fade-up" data-aos-delay="200">
             <a href="https://youtu.be/BBlJ0dyCeBA" data-fancybox data-ratio="2" class="btn-play"><span class="ion ion-ios-play"></span></a>
@@ -172,6 +167,9 @@
             <h3>Desain </h3>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias id volume amet.</p>
           </div>
+        </div>
+        <div class="col-12 text-center">
+          <p><a href="<?php echo base_url('auth/all_gallery')?>" class="btn btn-outline-white px-4 py-3">Hubungi</a></p>
         </div>
       </div>
     </div>

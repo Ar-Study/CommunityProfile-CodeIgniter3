@@ -40,6 +40,14 @@ class Auth extends CI_Controller
         $this->load->view('frontend/auth_footer');
     }
 
+    public function full_gallery(){
+        $data['title'] =  "Komunitas Programmer Millenial | Galeri";
+        $data['galeri'] = $this->Madmin->get_data('galeri')->result();
+        $this->load->view('frontend/auth_header', $data);
+        $this->load->view('auth/full_gallery', $data);
+        $this->load->view('frontend/auth_footer');
+    }
+
     public function all_gallery()
     {
         $data['title'] =  "Komunitas Programmer Millenial | Semua Galeri";

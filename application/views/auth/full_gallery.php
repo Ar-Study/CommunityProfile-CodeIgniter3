@@ -17,7 +17,7 @@
           <br>
           </div>
         </div>
-        <?php  foreach (array_slice($galeri, 0, 5) as $g) { ?>
+        <?php  foreach ($galeri as $g) { ?>
         <div class="row">
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
           <div class="media d-block media-custom text-center">
@@ -30,12 +30,5 @@
           </div>
         </div>
         <?php } ?>
-    <div class="bg-white py-5">
-      <div class="container">
-          <div class="col-lg-7">
-            <p class="mb-5" data-aos="fade-right" data-aos-delay="200"><a href="<?= base_url('auth/full_gallery'); ?>" class="btn btn-outline-black px-4 py-3">Tampilkan Lebih Banyak</a></p>
-          </div>
-        </div>
-      </div>
     </div>
 <!-- END CONTENT -->

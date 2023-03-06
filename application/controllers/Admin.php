@@ -13,14 +13,34 @@ class Admin extends CI_Controller
 
     public function index()
     {
+        // Periksa apakah user telah melakukan login
         if (!$this->session->userdata('email')) {
+            // Jika belum, redirect kembali ke halaman login
             redirect('admin/signnin');
         }
+        $data['berita'] = $this->Madmin->get_data('berita')->result();
         $data['judul'] = "SpyderBit | Admin - Home";
-        $this->load->view('./admin/header',$data);
-        $this->load->view('./admin/index');
+
+        // Menghitung jumlah baris dalam tabel "berita"
+        $this->load->database(); // Load database
+        $this->db->from('berita'); // Tentukan tabel yang akan dihitung jumlah barisnya
+        $jumlah_baris = $this->db->count_all_results(); // Hitung jumlah baris
+        $data['jumlah_berita'] = $jumlah_baris; // Simpan hasil perhitungan pada variabel $data
+
+        $this->db->from('galeri');
+        $jumlah_galeri = $this->db->count_all_results();
+        $data['jumlah_galeri'] = $jumlah_galeri;
+
+        $this->db->from('kegiatan');
+        $jumlah_kegiatan = $this->db->count_all_results();
+        $data['jumlah_kegiatan'] = $jumlah_kegiatan;
+        
+        $this->load->view('./admin/header', $data);
+        $this->load->view('./admin/index', $data);
         $this->load->view('./admin/footer');
     }
+
+
 
 
     public function signnin()
@@ -44,32 +64,40 @@ class Admin extends CI_Controller
         $password = $this->input->post('password');
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
-        // usernya ada
+        // Jika user ditemukan
         if ($user) {
-            // jika usernya aktif
+            // Jika user telah diaktivasi dan memiliki role sebagai admin
             if ($user['is_active'] == 1 && $user['role_id'] == 2) {
-                // cek password
+                // Cek password
                 if (password_verify($password, $user['password'])) {
                     $data = [
                         'email' => $user['email'],
                         'role' => $user['role_id']
                     ];
                     $this->session->set_userdata($data);
+
+                    // Jika login berhasil, redirect ke halaman admin
                     redirect('./admin/');
                 } else {
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            password salah!</div>');
-                    redirect('admin/signnin');
+                    Password salah!</div>');
+
+                    // Jika password salah, redirect kembali ke halaman login
+                    redirect('admin/signin');
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Email belum diaktivasi!</div>');
-                redirect('admin/signnin');
+                Email belum diaktivasi!</div>');
+
+                // Jika email belum diaktivasi, redirect kembali ke halaman login
+                redirect('admin/signin');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
             Email belum terdaftar!</div>');
-            redirect('admin/signnin');
+
+            // Jika email belum terdaftar, redirect kembali ke halaman login
+            redirect('admin/signin');
         }
     }
 
@@ -118,20 +146,25 @@ class Admin extends CI_Controller
 
     public function logout()
     {
-        if (!$this->session->userdata('admin_id')) {
+        // Mengecek apakah user telah login sebelumnya
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         
-        $this->session->unset_userdata('email');
-        $this->session->unset_userdata('role_id');
+        // Menghapus data user dari session
+        $this->session->sess_destroy();
 
+        // Memberikan pesan keberhasilan logout pada user
         $this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">
-            selamat!,  Anda berhasil keluar</div>');
+            Anda telah berhasil keluar</div>');
+
+        // Redirect ke halaman login
         redirect('admin/signnin');
     }
+
     public function berita()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $data['berita'] = $this->Madmin->get_data('berita')->result();
@@ -143,7 +176,7 @@ class Admin extends CI_Controller
 
     public function berita_add()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
 
@@ -153,7 +186,7 @@ class Admin extends CI_Controller
     }
     public function berita_add_act()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -192,7 +225,7 @@ class Admin extends CI_Controller
 
     public function berita_edit($id)
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $where = array(
@@ -206,7 +239,7 @@ class Admin extends CI_Controller
 
     public function berita_update()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $id = $this->input->post('id');
@@ -262,7 +295,7 @@ class Admin extends CI_Controller
 
     public function berita_hapus()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $id = $this->input->post('id');
@@ -281,7 +314,7 @@ class Admin extends CI_Controller
 
     public function galeri()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $data['galeri'] = $this->Madmin->get_data('galeri')->result();
@@ -292,7 +325,7 @@ class Admin extends CI_Controller
     }
     public function galeri_add()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $this->load->view('./admin/header');
@@ -301,7 +334,7 @@ class Admin extends CI_Controller
     }
     public function galeri_add_act()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -338,7 +371,7 @@ class Admin extends CI_Controller
     }
     public function galeri_edit($id)
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $where = array(
@@ -403,7 +436,7 @@ class Admin extends CI_Controller
     }
     public function galeri_hapus()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $id = $this->input->post('id');
@@ -421,7 +454,7 @@ class Admin extends CI_Controller
     }
     public function kegiatan()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
@@ -431,7 +464,7 @@ class Admin extends CI_Controller
     }
     public function kegiatan_add()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $this->load->view('./admin/header');
@@ -440,7 +473,7 @@ class Admin extends CI_Controller
     }
     public function kegiatan_add_act()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $this->form_validation->set_rules('nama', 'Nama', 'required');
@@ -477,7 +510,7 @@ class Admin extends CI_Controller
     }
     public function kegiatan_edit($id)
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $where = array(
@@ -491,7 +524,7 @@ class Admin extends CI_Controller
 
     public function kegiatan_update()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $id = $this->input->post('id');
@@ -543,7 +576,7 @@ class Admin extends CI_Controller
     }
     public function kegiatan_hapus()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
         $id = $this->input->post('id');

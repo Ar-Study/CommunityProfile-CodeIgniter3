@@ -56,7 +56,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link"  data-slide="true" href="<?= base_url("admin/logout") ?>" role="button">
+                    <a class="nav-link"  data-slide="true" href="<?= base_url().'./admin/logout' ?>" role="button">
                         <i class="fas fa-sign-out-alt"></i>
                     </a>
                 </li>

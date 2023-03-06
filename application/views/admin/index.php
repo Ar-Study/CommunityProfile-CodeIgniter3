@@ -29,8 +29,7 @@
                         <div class="info-box-content">
                             <span class="info-box-text">Berita </span>
                             <span class="info-box-number">
-                                10
-                                <small>%</small>
+                                <?= $jumlah_berita; ?>
                             </span>
                         </div>
                         <!-- /.info-box-content -->
@@ -40,11 +39,11 @@
                 <!-- /.col -->
                 <div class="col-12 col-sm-6 col-md-3">
                     <div class="info-box mb-3">
-                        <span class="info-box-icon bg-danger elevation-1"><i class="fa fa-camera-retro"></i></span>
+                        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-users"></i></span>
 
                         <div class="info-box-content">
-                            <span class="info-box-text">Galeri</span>
-                            <span class="info-box-number">41,410</span>
+                            <span class="info-box-text">Anggota</span>
+                            <span class="info-box-number"><?= $jumlah_galeri; ?></span>
                         </div>
                         <!-- /.info-box-content -->
                     </div>
@@ -61,26 +60,14 @@
 
                         <div class="info-box-content">
                             <span class="info-box-text">Kegiatan </span>
-                            <span class="info-box-number">760</span>
+                            <span class="info-box-number"><?= $jumlah_kegiatan; ?></span>
+                            
                         </div>
                         <!-- /.info-box-content -->
+                        
                     </div>
                     <!-- /.info-box -->
                 </div>
-                <!-- /.col -->
-                <div class="col-12 col-sm-6 col-md-3">
-                    <div class="info-box mb-3">
-                        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-
-                        <div class="info-box-content">
-                            <span class="info-box-text">New Members</span>
-                            <span class="info-box-number">2,000</span>
-                        </div>
-                        <!-- /.info-box-content -->
-                    </div>
-                    <!-- /.info-box -->
-                </div>
-                <!-- /.col -->
             </div>
             <!-- /.row -->
 

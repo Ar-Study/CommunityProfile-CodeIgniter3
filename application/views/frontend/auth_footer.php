@@ -40,7 +40,7 @@
         </div>
         </div>
       </div>
-      <div class="col-md-2 mb-5 ml-auto">
+      <div class="col-md-2 mb-5 ml-auto fixed-bottom p-5">
         <a href="https://wa.me/088232106692" class="btn btn-success px-4 py-3" target="_blank"><span class="fa fa-whatsapp"> Chat</a>
       </div>
       <div class="row">

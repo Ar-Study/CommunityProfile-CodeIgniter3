@@ -31,4 +31,5 @@
         </div>
         <?php } ?>
     </div>
+  </div>
 <!-- END CONTENT -->

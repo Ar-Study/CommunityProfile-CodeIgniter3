@@ -39,12 +39,8 @@
             <li class="nav-item">
               <a class="nav-link active" href="<?= base_url('auth/index'); ?>">Beranda</a>
             </li>
-            <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Profil</a>
-              <div class="dropdown-menu">
-                <a href="<?= base_url('auth/profile'); ?>" class="dropdown-item">Pengertian Profil Komunitas</a>
-                <a href="<?= base_url('auth/profile_management'); ?>" class="dropdown-item">Dewan Kepengurusan</a>
-              </div>
+            <li class="nav-item">
+              <a class="nav-link" href="<?= base_url('auth/profile'); ?>">Profil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('auth/gallery'); ?>">Galeri</a>
@@ -169,7 +165,7 @@
           </div>
         </div>
         <div class="col-12 text-center">
-          <p><a href="<?php echo base_url('auth/all_gallery')?>" class="btn btn-outline-white px-4 py-3">Hubungi</a></p>
+          <p><a href="<?php echo base_url('auth/all_gallery')?>" class="btn btn-outline-white px-4 py-3">Hubungi Admin</a></p>
         </div>
       </div>
     </div>
@@ -229,8 +225,8 @@
         </div>
         </div>
       </div>
-      <div class="col-md-2 mb-5 ml-auto fixed-bottom p-5">
-        <a href="https://wa.me/088232106692" class="rounded btn btn-success px-4 py-3 position-absolute bottom-50 end-50 fixed_bottom" target="_blank"><span class="fa fa-whatsapp"> Chat</a>
+      <div class="col-md-1 mb-5 ml-auto fixed-bottom py-5">
+        <a href="https://wa.me/088232106692" class="rounded-circle btn btn-success p-2 position-absolute bottom-50 end-50 fixed_bottom" target="_blank"><span class="fa fa-whatsapp fa-4x"></a>
       </div>
       <div class="row">
         <div class="col-12 text-md-center text-left">

@@ -40,8 +40,8 @@
         </div>
         </div>
       </div>
-      <div class="col-md-2 mb-5 ml-auto fixed-bottom p-5">
-        <a href="https://wa.me/088232106692" class="btn btn-success px-4 py-3" target="_blank"><span class="fa fa-whatsapp"> Chat</a>
+      <div class="col-md-1 mb-5 ml-auto fixed-bottom">
+        <a href="https://wa.me/088232106692" class="rounded-circle btn btn-success px-4 py-3 " target="_blank"><span class="fa fa-whatsapp fa-3x"></a>
       </div>
       <div class="row">
         <div class="col-12 text-md-center text-left">

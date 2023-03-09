@@ -40,21 +40,14 @@
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('auth/index'); ?>">Beranda</a>
             </li>
-            <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle  <?php if (uri_string() == 'auth/profile' || uri_string() == 'auth/profile_management') echo 'active'; ?>" data-toggle="dropdown">Profil</a>
-                <div class="dropdown-menu">
-                  <a href="<?= base_url('auth/profile'); ?>" class="dropdown-item">Pengertian Profil Komunitas</a>
-                  <a href="<?= base_url('auth/profile_management'); ?>" class="dropdown-item">Dewan Kepengurusan</a>
-              </div>
+            <li class="nav-item">
+              <a class="nav-link <?php if (uri_string() == 'auth/profile') echo "active" ?>" href="<?= base_url('auth/profile'); ?>">Profil</a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?php if (uri_string() == 'auth/gallery') echo "active" ?>" href="<?= base_url('auth/gallery'); ?>">Galeri</a>
             </li>
-          <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle <?php if(uri_string() ==  'auth/activity') echo "active" ?>" data-toggle="dropdown">Kegiatan Kami</a>
-                <div class="dropdown-menu">
-                  <a href="<?= base_url('auth/activity'); ?>" class="dropdown-item">Jenis Kegiatan</a>
-              </div>
+            <li class="nav-item">
+              <a class="nav-link <?php if(uri_string() == 'auth/activity') echo "active" ?> " href="<?= base_url('auth/activity'); ?>">Kegiatan Kami</a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?php if(uri_string() == 'auth/news') echo "active" ?> " href="<?= base_url('auth/news'); ?>">Berita</a>

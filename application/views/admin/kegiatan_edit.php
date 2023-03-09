@@ -11,7 +11,18 @@
                 <input type="text" class="form-control border-0" name="content" placeholder="isi Kegiatan" value="<?= $k->isi_kegiatan ?>">
                 <?php echo form_error('content'); ?>
             </div>
-
+            <div class="form-group">
+                <label for="jenis_kegiatan">Jenis Kegiatan</label>
+                <select class="form-control" id="jenis_kegiatan" name="jenis_kegiatan">
+                    <option value="individu" <?php if($k->jenis_kegiatan == 'individu') { echo 'selected'; } ?>>Kegitan Individu</option>
+                    <option value="kelompok" <?php if($k->jenis_kegiatan == 'kelompok') { echo 'selected'; } ?>>Kegiatan Kelompok</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tanggal_kegiatan">Tanggal Pelaksanaan Kegiatan</label>
+                <input type="date" class="form-control border-0" name="tanggal_kegiatan" placeholder="Tanggal Kegiatan" value="<?= $k->tanggal_kegiatan ?>">
+                <?php echo form_error('tanggal_kegiatan'); ?>
+            </div>
             <div class="custom-file">
                 <input type="hidden" name="foto_old" value="<?php echo $k->logo_kegiatan ?>">
                 <img src="<?php echo base_url() . './img/' . $k->logo_kegiatan ?>" alt="" width="100px" class="my-3">

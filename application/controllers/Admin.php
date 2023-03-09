@@ -458,7 +458,8 @@ class Admin extends CI_Controller
             redirect('admin/signnin');
         }
         $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
-        $this->load->view('./admin/header');
+        $data['judul'] = "SpyderBit | Admin - Kegiatan";
+        $this->load->view('./admin/header',$data);
         $this->load->view('./admin/kegiatan', $data);
         $this->load->view('./admin/footer');
     }
@@ -467,7 +468,8 @@ class Admin extends CI_Controller
         if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
-        $this->load->view('./admin/header');
+        $data['judul'] = "SpyderBit | Admin - Tambah Kegiatan";
+        $this->load->view('./admin/header',$data);
         $this->load->view('./admin/kegiatan_add');
         $this->load->view('./admin/footer');
     }
@@ -478,6 +480,8 @@ class Admin extends CI_Controller
         }
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('content', 'Content', 'required');
+        $this->form_validation->set_rules('jenis_kegiatan', 'Jenis Kegiatan', 'required');
+        $this->form_validation->set_rules('tanggal_kegiatan', 'Tanggal Kegiatan', 'required');
         if ($this->form_validation->run() != false) {
             $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
             $config['upload_path']          = './img/';
@@ -494,10 +498,14 @@ class Admin extends CI_Controller
                 $foto = $foto['file_name'];
                 $nama = $this->input->post('nama');
                 $isi = $this->input->post('content');
+                $jenis = $this->input->post('jenis_kegiatan');
+                $waktu = $this->input->post('tanggal_kegiatan');
                 $data = array(
                     'nama_kegiatan' => $nama,
                     'logo_kegiatan' => $foto,
-                    'isi_kegiatan' => $isi
+                    'isi_kegiatan' => $isi,
+                    'jenis_kegiatan' => $jenis,
+                    'tanggal_kegiatan' => $waktu
                 );
                 $this->Madmin->insert_data($data, 'kegiatan');
                 redirect(base_url() . 'admin/kegiatan');
@@ -513,11 +521,12 @@ class Admin extends CI_Controller
         if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
+        $data['judul'] = "SpyderBit | Admin - Ubah Data Kegiatan";
         $where = array(
             'id_kegiatan' => $id
         );
         $data['kegiatan'] = $this->Madmin->edit_data($where, 'kegiatan')->result();
-        $this->load->view('./admin/header');
+        $this->load->view('./admin/header',$data);
         $this->load->view('./admin/kegiatan_edit', $data);
         $this->load->view('./admin/footer');
     }
@@ -527,13 +536,20 @@ class Admin extends CI_Controller
         if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
+        
         $id = $this->input->post('id');
         $old_filename = $this->input->post('foto_old');
         $new_filename = $_FILES['foto']['name'];
+        
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('content', 'Content', 'required');
+        $this->form_validation->set_rules('jenis_kegiatan', 'Jenis Kegiatan', 'required');
+        $this->form_validation->set_rules('tanggal_kegiatan', 'Tanggal Kegiatan', 'required');
+        
         if ($this->form_validation->run() != false) {
-            if ($new_filename == true) {
+            $update_filename = $old_filename;
+        
+            if ($new_filename != '') {
                 $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
                 $config = [
                     'upload_path' => './img/',
@@ -549,30 +565,33 @@ class Admin extends CI_Controller
                 } else {
                     $update_filename = $old_filename;
                 }
-
-                $where = array(
-                    'id_kegiatan' => $id
-                );
-
-                $data = array(
-                    'nama_kegiatan' => $this->input->post('nama'),
-                    'logo_kegiatan' => $update_filename,
-                    'isi_kegiatan' => $this->input->post('content'),
-                );
-                $this->Madmin->update_data($where, $data, 'kegiatan');
-                redirect(base_url() . 'admin/kegiatan');
-            } else {
-                redirect(base_url() . 'admin/kegiatan');
             }
+        
+            $where = array(
+                'id_kegiatan' => $id
+            );
+        
+            $data = array(
+                'nama_kegiatan' => $this->input->post('nama'),
+                'logo_kegiatan' => $update_filename,
+                'isi_kegiatan' => $this->input->post('content'),
+                'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
+                'tanggal_kegiatan' => $this->input->post('tanggal_kegiatan')
+            );
+        
+            $this->Madmin->update_data($where, $data, 'kegiatan');
+            redirect(base_url() . 'admin/kegiatan');
         } else {
             $where = array(
                 'id_kegiatan' => $id
             );
+        
             $data['kegiatan'] = $this->Madmin->edit_data($where, 'kegiatan')->result();
             $this->load->view('./admin/header');
             $this->load->view('./admin/kegiatan_edit', $data);
             $this->load->view('./admin/footer');
         }
+        
     }
     public function kegiatan_hapus()
     {

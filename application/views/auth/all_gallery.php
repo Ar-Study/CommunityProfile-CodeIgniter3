@@ -9,68 +9,26 @@
   </div>
 <!-- END NAVBAR -->
 
-<div class="section gallery-section">
+<div class="section">
     <div class="container">
-      <div class="row mb-2 justify-content-center" data-aos="fade-up">
-        <div class="col-md-2 text-center">
-          <h2>Kegiatan</h2>
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-8 text-center" data-aos="fade-up" data-aos-delay="">
+          <h2 class="mb-4 section-title">Dokumentasi Kegiatan</h2>
+          <br>
+          </div>
         </div>
-      </div>
+        <?php  foreach ($kegiatan as $g) { ?>
+        <div class="row">
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+          <div class="media d-block media-custom text-center">
+            <a target="_blank" href="<?php echo base_url('img/') . $g->logo_kegiatan  ?>">
+            <img src="<?php echo base_url('img/') . $g->logo_kegiatan ?>"alt="Image Placeholder" class="img-fluid"></a>
+            <div class="media-body">
+              <h3 class="mt-0 text-black"><?php echo $g->nama_kegiatan ?></h3>
+              <p><?= $g->isi_kegiatan; ?></p>
+            </div>
+          </div>
+        </div>
+        <?php } ?>
     </div>
-    <div class="container-fluid">
-      <div class="row mb-5">
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="100">
-          <a href="index.html">
-			<a href="<?php echo base_url('assets/frontend/') ?>images/work_1.jpeg" class="d-block" data-fancybox="gal">
-            <img src="<?php echo base_url('assets/frontend/') ?>images/work_1.jpeg" alt="Image" class="img-fluid">
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
-          <a href="index.html">
-            <a href="<?php echo base_url('assets/frontend/') ?>images/work_2.jpeg" class="mb-3 d-block" data-fancybox="gal">
-			<img src="<?php echo base_url('assets/frontend/') ?>images/work_2.jpeg" alt="Image" class="img-fluid"/></a>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
-          <a href="index.html">
-            <a href="<?php echo base_url('assets/frontend/') ?>images/work_3.jpeg" class="mb-3 d-block" data-fancybox="gal">
-			<img src="<?php echo base_url('assets/frontend/') ?>images/work_3.jpeg" alt="Image" class="img-fluid"/></a>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
-          <a href="index.html">
-            <a href="<?php echo base_url('assets/frontend/') ?>images/work_1.jpeg" class="mb-3 d-block" data-fancybox="gal">
-			<img src="<?php echo base_url('assets/frontend/') ?>images/work_1.jpeg" alt="Image" class="img-fluid"/></a>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
-          <a href="index.html">
-            <a href="<?php echo base_url('assets/frontend/') ?>images/work_2.jpeg" class="mb-3 d-block" data-fancybox="gal">
-			<img src="<?php echo base_url('assets/frontend/') ?>images/work_2.jpeg" alt="Image" class="img-fluid"/></a>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
-          <a href="index.html">
-            <a href="<?php echo base_url('assets/frontend/') ?>images/work_1.jpeg" class="mb-3 d-block" data-fancybox="gal">
-			<img src="<?php echo base_url('assets/frontend/') ?>images/work_1.jpeg" alt="Image" class="img-fluid"/></a>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
-          <a href="index.html">
-            <a href="<?php echo base_url('assets/frontend/') ?>images/work_3.jpeg" class="mb-3 d-block" data-fancybox="gal">
-			<img src="<?php echo base_url('assets/frontend/') ?>images/work_3.jpeg" alt="Image" class="img-fluid"/></a>
-          </a>
-        </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
-          <a href="index.html">
-            <a href="<?php echo base_url('assets/frontend/') ?>images/work_2.jpeg" class="mb-3 d-block" data-fancybox="gal">
-			<img src="<?php echo base_url('assets/frontend/') ?>images/work_2.jpeg" alt="Image" class="img-fluid"/></a>
-          </a>
-        </div>
-    </ul>
-  </div>
-  </div>
-  </div>
-  </div>
-  </div>
-  <!-- END CONTENT -->
+      <!-- END CONTENT -->

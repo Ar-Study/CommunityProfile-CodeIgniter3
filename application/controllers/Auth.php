@@ -51,8 +51,9 @@ class Auth extends CI_Controller
     public function all_gallery()
     {
         $data['title'] =  "Komunitas Programmer Millenial | Semua Galeri";
+        $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
         $this->load->view('frontend/auth_header', $data);
-        $this->load->view('auth/all_gallery');
+        $this->load->view('auth/all_gallery',$data);
         $this->load->view('frontend/auth_footer');
     }
 

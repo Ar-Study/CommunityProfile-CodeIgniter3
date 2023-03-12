@@ -12,6 +12,7 @@ class Auth extends CI_Controller
     public function index()
     {
         $data['title'] =  "Komunitas Programmer Millenial | Diskusi, Berkarya, Dan Berkontribusi";
+        $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
         $this->load->view('auth/index', $data);
     }
 
@@ -50,10 +51,18 @@ class Auth extends CI_Controller
 
     public function all_gallery()
     {
-        $data['title'] =  "Komunitas Programmer Millenial | Semua Galeri";
+        $data['title'] =  "Komunitas Programmer Millenial | Galeri Kegiatan Kelompok";
         $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
         $this->load->view('frontend/auth_header', $data);
         $this->load->view('auth/all_gallery',$data);
+        $this->load->view('frontend/auth_footer');
+    }
+    public function individu_gallery()
+    {
+        $data['title'] =  "Komunitas Programmer Millenial | Galeri Kegiatan Individu";
+        $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
+        $this->load->view('frontend/auth_header', $data);
+        $this->load->view('auth/individu_gallery',$data);
         $this->load->view('frontend/auth_footer');
     }
 

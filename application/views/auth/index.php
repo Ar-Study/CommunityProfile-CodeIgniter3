@@ -45,12 +45,8 @@
             <li class="nav-item">
               <a class="nav-link" href="<?= base_url('auth/gallery'); ?>">Galeri</a>
             </li>
-            <li class="nav-item dropdown">
-            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Kegiatan Kami</a>
-              <div class="dropdown-menu">
-                <a href="<?= base_url('auth/activity'); ?>" class="dropdown-item">Jenis Kegiatan</a>
-                <a href="<?= base_url('auth/activity'); ?>" class="dropdown-item">Foto Kegiatan</a>
-              </div>
+            <li class="nav-item">
+              <a class="nav-link <?php if(uri_string() == 'auth/activity') echo "active" ?> " href="<?= base_url('auth/activity'); ?>">Kegiatan Kami</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="<?=base_url('auth/news'); ?>">Berita</a>
@@ -70,7 +66,6 @@
     <div class="container">
       <div class="row slider-text align-items-center justify-content-center">
         <div class="col-lg-12 text-center col-sm-12">
-          <p data-aos="fade-up" data-aos="fade-up" data-aos-delay="">Komunitas Programmer isinya apa? <a href="" target="_blank">Lihat Selengkapnya</a></p>
           <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">Kami membuat hal yang luar biasa.</h1>
           <div class="btn-play-wrap mx-auto" data-aos="fade-up" data-aos-delay="200">
             <a href="https://youtu.be/BBlJ0dyCeBA" data-fancybox data-ratio="2" class="btn-play"><span class="ion ion-ios-play"></span></a>
@@ -90,24 +85,17 @@
     </div>
     <div class="container-fluid">
       <div class="row mb-5 no-gutters">
+        <?php foreach ($kegiatan as $k) { ?>
         <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="100">
           <div class="work-thumb">
             <div class="work-text">
-              <h2>Kumpul Bareng Komunitas</h2>
+              <h2><?= $k->nama_kegiatan; ?></h2>
               <p>Sokaraja</p>
             </div>
-            <img src="<?php echo base_url('assets/frontend/') ?>images/gallery_1.jpg" alt="Image" class="img-fluid">
+            <img src="<?php echo base_url('img/') . $k->logo_kegiatan ?>" alt="Image" class="img-fluid">
           </div>
         </div>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="200">
-          <div class="work-thumb">
-            <div class="work-text">
-              <h2>Kumpul Bareng Komunitas</h2>
-              <p>Sokaraja</p>
-            </div>
-            <img src="<?php echo base_url('assets/frontend/') ?>images/gallery_2.jpg" alt="Image" class="img-fluid">
-          </div>
-        </div>
+        <?php } ?>
       </div>
       <div class="row mt-5">
         <div class="col-12 text-center">

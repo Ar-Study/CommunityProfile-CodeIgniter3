@@ -12,13 +12,13 @@
   <div class="container">
     <div class="row justify-content-center mb-5">
       <div class="col-md-8 text-center" data-aos="fade-up" data-aos-delay="">
-        <h2 class="mb-4 section-title">Dokumentasi Kegiatan Kelompok</h2>
+        <h2 class="mb-4 section-title">Dokumentasi Kegiatan Individu</h2>
         <br>
       </div>
     </div>
     <div class="row">
       <?php foreach ($kegiatan as $g) { ?>
-        <?php if ($g->jenis_kegiatan == 'kelompok') { ?>
+        <?php if ($g->jenis_kegiatan == 'individu') { ?>
           <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
             <div class="media d-block media-custom text-center">
               <a target="_blank" href="<?php echo base_url('img/') . $g->logo_kegiatan ?>">

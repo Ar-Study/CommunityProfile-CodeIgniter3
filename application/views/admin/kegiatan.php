@@ -26,6 +26,7 @@
                                     <th>Nama </th>
                                     <th>Foto </th>
                                     <th>Deskripsi Singkat</th>
+                                    <th>Lokasi Kegiatan</th>
                                     <th>Jenis Kegiatan</th>
                                     <th>Tanggal Pelaksanaan</th>
                                     <th>Modify</th>
@@ -38,6 +39,7 @@
                                         <td><?= $k->nama_kegiatan ?></td>
                                         <td><img style="width: 100px;" src="<?= base_url('img/'.$k->logo_kegiatan) ?>" alt=""></td>
                                         <td><?= $k->isi_kegiatan ?></td>
+                                        <td><?= $k->lokasi_kegiatan ?></td>
                                         <td><?= $k->jenis_kegiatan ?></td>
                                         <td><?= $k->tanggal_kegiatan ?></td>
                                         <td><a href="<?= base_url('admin/kegiatan_edit/'.$k->id_kegiatan) ?>" class="btn btn-primary">Mengubah</a></td>

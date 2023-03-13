@@ -12,6 +12,10 @@
                 <?php echo form_error('content'); ?>
             </div>
             <div class="form-group">
+                <input type="text" class="form-control border-0" name="lokasi" placeholder="Lokasi Kegiatan" value="<?= $k->lokasi_kegiatan ?>">
+                <?php echo form_error('lokasi'); ?>
+            </div>
+            <div class="form-group">
                 <label for="jenis_kegiatan">Jenis Kegiatan</label>
                 <select class="form-control" id="jenis_kegiatan" name="jenis_kegiatan">
                     <option value="individu" <?php if($k->jenis_kegiatan == 'individu') { echo 'selected'; } ?>>Kegitan Individu</option>

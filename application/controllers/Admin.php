@@ -576,7 +576,8 @@ class Admin extends CI_Controller
                 'logo_kegiatan' => $update_filename,
                 'isi_kegiatan' => $this->input->post('content'),
                 'jenis_kegiatan' => $this->input->post('jenis_kegiatan'),
-                'tanggal_kegiatan' => $this->input->post('tanggal_kegiatan')
+                'tanggal_kegiatan' => $this->input->post('tanggal_kegiatan'),
+                'lokasi_kegiatan'=> $this->input->post('lokasi')
             );
         
             $this->Madmin->update_data($where, $data, 'kegiatan');

@@ -85,17 +85,24 @@
     </div>
     <div class="container-fluid">
       <div class="row mb-5 no-gutters">
-        <?php foreach ($kegiatan as $k) { ?>
-        <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="100">
-          <div class="work-thumb">
-            <div class="work-text">
-              <h2><?= $k->nama_kegiatan; ?></h2>
-              <p>Sokaraja</p>
-            </div>
-            <img src="<?php echo base_url('img/') . $k->logo_kegiatan ?>" alt="Image" class="img-fluid">
+          <?php 
+              //sorting data berdasarkan tanggal terbaru
+              usort($kegiatan, function($a, $b) {
+                  return strtotime($b->tanggal_kegiatan) - strtotime($a->tanggal_kegiatan);
+              });
+              $latest_kegiatan = array_slice($kegiatan, 0, 2); //ambil 2 data terbaru
+              foreach ($latest_kegiatan as $k) { 
+          ?>
+          <div class="col-sm-6 col-md-6 col-lg-6" data-aos="fade" data-aos-delay="100">
+              <div class="work-thumb">
+                  <div class="work-text">
+                      <h2><?= $k->nama_kegiatan; ?></h2>
+                      <p><?= $k->lokasi_kegiatan; ?></p>
+                  </div>
+                  <img src="<?php echo base_url('img/') . $k->logo_kegiatan ?>" alt="Image" class="img-fluid">
+              </div>
           </div>
-        </div>
-        <?php } ?>
+          <?php } ?>
       </div>
       <div class="row mt-5">
         <div class="col-12 text-center">

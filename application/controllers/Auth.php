@@ -74,14 +74,21 @@ class Auth extends CI_Controller
         $this->load->view('frontend/auth_footer');
     }
 
-    public function news()
+    public function news($page_number = 1)
     {
         $data['title'] =  "Komunitas Programmer Millenial | Berita";
-        $data['berita'] = $this->Madmin->get_data('berita')->result();
+        $berita_per_page = 3;
+        $start = ($page_number - 1) * $berita_per_page;
+        $data['berita'] = $this->Madmin->get_data('berita', $berita_per_page, $start)->result();
+        $total_berita = $this->Madmin->get_data('berita')->num_rows();
+        $total_pages = ceil($total_berita / $berita_per_page);
+        $data['current_page'] = $page_number;
+        $data['total_pages'] = $total_pages;
         $this->load->view('frontend/auth_header', $data);
-        $this->load->view('auth/news',$data);
+        $this->load->view('auth/news', $data);
         $this->load->view('frontend/auth_footer');
     }
+
 
     public function contact()
     {

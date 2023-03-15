@@ -46,6 +46,7 @@
                     </div>
                 <?php } ?>
             </div>
+            
             <nav aria-label="...">
                 <ul class="pagination">
                     <li class="page-item <?php echo $current_page == 1 ? 'disabled' : '' ?>">

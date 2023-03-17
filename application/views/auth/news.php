@@ -11,28 +11,8 @@
             <br>
             <div class="row">
                 <?php
-                // ambil data berita dari array $berita
-                $data = $berita;
-
-                // tentukan jumlah berita per halaman
-                $per_page = 3;
-
-                // tentukan halaman saat ini
-                $current_page = isset($page) ? $page : 1;
-
-                // hitung total jumlah halaman
-                $total_pages = ceil(count($data) / $per_page);
-
-                // tampilkan hanya 3 berita di halaman pertama
-                if ($current_page == 1) {
-                    $halaman_pertama = array_slice($data, 0, $per_page);
-                } else {
-                    // tampilkan berita sesuai halaman yang diinginkan
-                    $offset = ($current_page - 1) * $per_page;
-                    $halaman_pertama = array_slice($data, $offset, $per_page);
-                }
-
-                foreach ($halaman_pertama as $b) {
+                
+                foreach ($articles as $b) {
                 ?>
                     <div class="col-md-4">
                         <div class="card" style="width: 18rem;">
@@ -40,14 +20,19 @@
                             <div class="card-body">
                                 <h5 class="card-title"><?= $b->Judul_berita; ?></h5>
                                 <p class="card-text"><?= substr($b->Deskripsi_berita, 0, 100); ?>...</p>
-                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                <a href="<?= base_url('auth/detail_news/') . $b->Id_berita; ?> " class="btn btn-primary">Go somewhere</a>
                             </div>
                         </div>
                     </div>
                 <?php } ?>
             </div>
-            
-            <nav aria-label="...">
+
+            <div class="pagination">
+                <?php echo $this->pagination->create_links(); ?>
+            </div>
+
+
+            <!-- <nav aria-label="...">
                 <ul class="pagination">
                     <li class="page-item <?php echo $current_page == 1 ? 'disabled' : '' ?>">
                         <a class="page-link" href="<?php echo site_url('auth/news/'.($current_page-1)) ?>">Previous</a>
@@ -61,7 +46,7 @@
                         <a class="page-link" href="<?php echo site_url('auth/news/'.($current_page+1)) ?>">Next</a>
                     </li>
                 </ul>
-            </nav>
+            </nav> -->
         </div>
     </div>
 </div>

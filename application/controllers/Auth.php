@@ -74,22 +74,41 @@ class Auth extends CI_Controller
         $this->load->view('frontend/auth_footer');
     }
 
-    public function news($page_number = 1)
+    public function news()
     {
-        $data['title'] =  "Komunitas Programmer Millenial | Berita";
-        $berita_per_page = 3;
-        $start = ($page_number - 1) * $berita_per_page;
-        $data['berita'] = $this->Madmin->get_data('berita', $berita_per_page, $start)->result();
-        $total_berita = $this->Madmin->get_data('berita')->num_rows();
-        $total_pages = ceil($total_berita / $berita_per_page);
-        $data['current_page'] = $page_number;
-        $data['total_pages'] = $total_pages;
-        $this->load->view('frontend/auth_header', $data);
-        $this->load->view('auth/news', $data);
-        $this->load->view('frontend/auth_footer');
+        $this->load->library('pagination');
+
+        $config['base_url'] = site_url('auth/news');
+        $config['page_query_string'] = TRUE;
+        $config['total_rows'] = $this->Madmin->get_published_count('berita');
+        $config['per_page'] = 3;
+
+        $this->pagination->initialize($config);
+        $limit = $config['per_page'];
+        $offset = $this->input->get('per_page') ? (int) $this->input->get('per_page') : 0;
+
+        $data['articles'] = $this->Madmin->get_published($limit, $offset, 'berita');
+        $data['title'] = "Komunitas Programmer Millenial | Berita";
+        $data['berita'] = $this->Madmin->get_data('berita')->result();
+
+        if (count($data['articles']) > 0) {
+            $this->load->view('frontend/auth_header', $data);
+            $this->load->view('auth/news', $data,$offset);
+            $this->load->view('frontend/auth_footer');
+        } else {
+            
+        }
     }
 
-
+    public function detail_news($id){
+        $where = array(
+            'Id_berita' => $id
+        );
+        $data['berita'] = $this->Madmin->edit_data($where,'berita')->result();
+        $this->load->view('frontend/auth_header', $data);
+        $this->load->view('auth/detail_news', $data);
+        $this->load->view('frontend/auth_footer');
+    }
     public function contact()
     {
         $data['title'] =  "Komunitas Programmer Millenial | Kontak";

@@ -23,4 +23,18 @@ class Madmin extends CI_Model
         $this->db->where($where);
         $this->db->delete($table);
     }
+    public function get_published_count($table)
+    {
+        $query = $this->db->get($table);
+        return $query->num_rows();
+    }
+    public function get_published($limit = null, $offset = null, $table)
+    {
+        if (!$limit && !$offset) {
+            $query = $this->db->get($table);
+        } else {
+            $query = $this->db->get($table, $limit, $offset);
+        }
+        return $query->result();
+    }
 }

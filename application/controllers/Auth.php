@@ -104,6 +104,7 @@ class Auth extends CI_Controller
         $where = array(
             'Id_berita' => $id
         );
+        $data['title'] = "Komunitas Programmer Millenial | Berita";
         $data['berita'] = $this->Madmin->edit_data($where,'berita')->result();
         $this->load->view('frontend/auth_header', $data);
         $this->load->view('auth/detail_news', $data);

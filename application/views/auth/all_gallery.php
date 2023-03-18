@@ -12,7 +12,7 @@
   <div class="container">
     <div class="row justify-content-center mb-5">
       <div class="col-md-8 text-center" data-aos="fade-up" data-aos-delay="">
-        <h2 class="mb-4 section-title">Dokumentasi Kegiatan Kelompok</h2>
+        <h2 class="mb-4 section-title">Dokumentasi Kegiatan</h2>
         <br>
       </div>
     </div>

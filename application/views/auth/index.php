@@ -128,50 +128,12 @@
       </div>
     </div>
   </div>
-  <div class="section">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 mb-4">
-          <div class="service" data-aos="fade-up" data-aos-delay="">
-            <span class="icon icon-fire mb-4 d-block"></span>
-            <h3>Pelatihan</h3>
-            <p>Pelatihan kepada anggota untuk meningkatkan keterampilan dalam pemrograman sehingga dapat membuka peluang untuk karir di indsutri teknologi yang berkembang pesat</p>
-          </div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <div class="service" data-aos="fade-up" data-aos-delay="100">
-            <span class="icon icon-screen-desktop mb-4 d-block"></span>
-            <h3>Pembuatan Web</h3>
-            <p>Membuatkan website profesional dan responsif yang sesuai dengan kebutuhan bisnis atau personal.</p>
-          </div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <div class="service" data-aos="fade-up" data-aos-delay="200">
-            <span class="icon icon-screen-smartphone mb-4 d-block"></span>
-            <h3>Pembuatan Software / Aplikasi</h3>
-            <p>Jasa pembuatan aplikasi atau software dapat membantu memenuhi kebutuhan bisnis atau personal dengan mengembangkan solusi digital yang inovatif dan efektif.</p>
-          </div>
-        </div>
-        <div class="col-lg-3 mb-4">
-          <div class="service" data-aos="fade-up" data-aos-delay="300">
-            <span class="icon icon-mouse mb-4 d-block"></span>
-            <h3>Desain </h3>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias id volume amet.</p>
-          </div>
-        </div>
-        <div class="col-12 text-center">
-          <p><a href="<?php echo base_url('auth/all_gallery')?>" class="btn btn-outline-white px-4 py-3">Hubungi Admin</a></p>
-        </div>
-      </div>
-    </div>
-  </div>
-  
   <div class="bg-primary py-5">
     <div class="container text-center">
       <div class="row justify-content-center">
         <div class="col-lg-7">
           <h3 class="text-white mb-2 font-weight-normal" data-aos="fade-right" data-aos-delay="">Mari berbuat lebih banyak bersama-sama kami</h3>
-          <p class="mb-0" data-aos="fade-right" data-aos-delay="200"><a href="<?= base_url("member/login"); ?>" class="btn btn-outline-white px-4 py-3">Gabung Sekarang</a></p>
+          <p class="mb-0" data-aos="fade-right" data-aos-delay="200"><a href="<?= "https://wa.me/088232106692" ?>" class="btn btn-outline-white px-4 py-3">Gabung Sekarang</a></p>
         </div>
       </div>
     </div>
@@ -181,7 +143,7 @@
   <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-md-4 mb-5">
+        <div class="col-md-6 mb-5">
           <h3 class="mb-4">Tentang Kami</h3>
           <p class="mb-5">Komunitas Programmer merupakan sebuah komunitas koding di daerah Banyumas. Yang menyediakan forum untuk web developer dan programmer lainnya. Disamping itu komunitas programmer juga untuk diskusi seputar web development, programming, design, ataupun seputar IT lainnya.</p>
           <ul class="list-unstyled footer-link d-flex footer-social">
@@ -192,7 +154,7 @@
             <li><a href="#" class="p-2"><span class="fa fa-telegram"></span></a></li>
           </ul>
         </div>
-        <div class="col-md-5 mb-5 pl-md-5">
+        <div class="col-md-6 mb-5 pl-md-5">
           <div class="mb-5">
             <h3 class="mb-4">Info Kontak</h3>
             <ul class="list-unstyled footer-link quick-contact">
@@ -208,16 +170,6 @@
               </li>
             </ul>
           </div>
-        </div>
-        <div class="col-md-3 mb-5">
-          <h3 class="mb-4">Layanan Kami</h3>
-          <ul class="list-unstyled footer-link">
-            <li><a href="#">Pelatihan</a></li>
-            <li><a href="#">Pembuatan Desain Website</a></li>
-            <li><a href="#">Pembuatan Website</a></li>
-            <li><a href="#">Pengembangan Website</a></li>
-          </ul>
-        </div>
         </div>
       </div>
       <div class="col-md-1 mb-5 ml-auto fixed-bottom py-5">

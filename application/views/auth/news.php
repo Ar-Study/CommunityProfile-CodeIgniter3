@@ -15,7 +15,7 @@
                 foreach ($articles as $b) {
                 ?>
                     <div class="col-md-4">
-                        <div class="card" style="width: 18rem;">
+                        <div class="card  h-100" style="width: 18rem;">
                             <img src="<?php echo base_url('img/') . $b->Foto_berita?>" alt="Image" class="card-img-top img-fluid img-absolute" data-aos="fade-left">
                             <div class="card-body">
                                 <h5 class="card-title"><?= $b->Judul_berita; ?></h5>

@@ -106,7 +106,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-12 text-center">
-          <p><a href="<?php echo base_url('auth/all_gallery')?>" class="btn btn-outline-white px-4 py-3">Lihat Lainnya</a></p>
+          <p><a href="<?php echo base_url('auth/activity ')?>" class="btn btn-outline-white px-4 py-3">Lihat Lainnya</a></p>
         </div>
       </div>
     </div>

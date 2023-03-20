@@ -1,7 +1,7 @@
 <footer class="site-footer" role="contentinfo">
     <div class="container">
       <div class="row mb-5">
-        <div class="col-md-4 mb-5">
+        <div class="col-md-6 mb-5">
           <h3 class="mb-4">Tentang Kami</h3>
             <p class="mb-5">Komunitas Programmer merupakan sebuah komunitas koding di daerah Banyumas. Yang menyediakan forum untuk web developer dan programmer lainnya. Disamping itu komunitas programmer juga untuk diskusi seputar web development, programming, design, ataupun seputar IT lainnya.</p>
           <ul class="list-unstyled footer-link d-flex footer-social">
@@ -12,7 +12,7 @@
             <li><a href="#" class="p-2"><span class="fa fa-telegram"></span></a></li>
           </ul>
         </div>
-        <div class="col-md-5 mb-5 pl-md-5">
+        <div class="col-md-6 mb-5 pl-md-5">
           <div class="mb-5">
             <h3 class="mb-4">Info Kontak</h3>
             <ul class="list-unstyled footer-link quick-contact">
@@ -29,19 +29,9 @@
             </ul>
           </div>
         </div>
-        <div class="col-md-3 mb-5">
-          <h3 class="mb-4">Layanan Kami</h3>
-          <ul class="list-unstyled footer-link">
-            <li><a href="#">Pelatihan</a></li>
-            <li><a href="#">Pembuatan Desain Website</a></li>
-            <li><a href="#">Pembuatan Website</a></li>
-            <li><a href="#">Pengembangan Website</a></li>
-          </ul>
-        </div>
-        </div>
       </div>
-      <div class="col-md-1 mb-5 ml-auto fixed-bottom">
-        <a href="https://wa.me/088232106692" class="rounded-circle btn btn-success px-4 py-3 " target="_blank"><span class="fa fa-whatsapp fa-3x"></a>
+      <div class="col-md-1 mb-5 ml-auto fixed-bottom py-5">
+        <a href="https://wa.me/088232106692" class="rounded-circle btn btn-success p-2 position-absolute bottom-50 end-50 fixed_bottom" target="_blank"><span class="fa fa-whatsapp fa-4x"></a>
       </div>
       <div class="row">
         <div class="col-12 text-md-center text-left">

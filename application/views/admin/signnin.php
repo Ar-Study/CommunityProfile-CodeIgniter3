@@ -11,7 +11,7 @@
         <?= $this->session->flashdata('message'); ?>
     <form class="user" method="post" action="<?=base_url('admin/signnin'); ?>">
       <div class="form-group has-feedback">
-        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email" value="<?= set_value('name'); ?>">
+        <input type="text" class="form-control form-control-user" id="email" name="email" placeholder="Email" value="<?php echo $this->session->userdata('signnin_email'); ?>">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         <?= form_error('email', '<small class="text-danger pl-3">', '</small>'); ?>
       </div>
@@ -39,9 +39,6 @@
     <hr/>
     <div class="text-center">
         <h5><a href="<?php echo base_url('admin/forgotpassword'); ?>" style="color:#ff0000;">Lupa Password?</a></h5>
-    </div>
-    <div class="text-center">
-        <h5><a href="<?php echo base_url('admin/registration'); ?>" style="color:#ffa500;">Buat Akun Sekarang!</a></h5>
     </div>
   </div>
   <!-- /.login-box-body -->

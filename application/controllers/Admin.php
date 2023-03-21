@@ -62,6 +62,25 @@ class Admin extends CI_Controller
     {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
+
+        // Menambahkan data percobaan login ke session jika belum ada
+        if (!$this->session->userdata('login_attempts')) {
+            $this->session->set_userdata('login_attempts', 0);
+            $this->session->set_userdata('last_login_attempt', time());
+        }
+
+        $login_attempts = $this->session->userdata('login_attempts');
+        $last_login_attempt = $this->session->userdata('last_login_attempt');
+
+        // Mencegah percobaan login yang terlalu sering
+        if ($login_attempts >= 3 && time() - $last_login_attempt < 900) {
+            // Jika sudah tiga kali percobaan login dan masih dalam waktu 15 menit,
+            // set flashdata error message dan redirect ke halaman login
+            $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
+                Anda telah mencoba login terlalu sering. Silakan coba lagi dalam 15 menit.</div>');
+            redirect('admin/signnin');
+        }
+
         $user = $this->db->get_where('user', ['email' => $email])->row_array();
 
         // Jika user ditemukan
@@ -76,30 +95,42 @@ class Admin extends CI_Controller
                     ];
                     $this->session->set_userdata($data);
 
+                    // Reset data percobaan login pada session
+                    $this->session->unset_userdata('login_attempts');
+                    $this->session->unset_userdata('last_login_attempt');
+
                     // Jika login berhasil, redirect ke halaman admin
                     redirect('./admin/');
                 } else {
+                    // Jika password salah, increment jumlah percobaan login pada session
+                    $login_attempts++;
+                    $this->session->set_userdata('login_attempts', $login_attempts);
                     $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                    Password salah!</div>');
-
-                    // Jika password salah, redirect kembali ke halaman login
-                    redirect('admin/signin');
+                        Password salah!</div>');
                 }
             } else {
                 $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-                Email belum diaktivasi!</div>');
-
-                // Jika email belum diaktivasi, redirect kembali ke halaman login
-                redirect('admin/signin');
+                    Email belum diaktivasi!</div>');
             }
         } else {
             $this->session->set_flashdata('message', '<div class="alert alert-danger" role="alert">
-            Email belum terdaftar!</div>');
-
-            // Jika email belum terdaftar, redirect kembali ke halaman login
-            redirect('admin/signin');
+                Email belum terdaftar!</div>');
         }
+
+        // Menyimpan email yang dimasukkan ke session jika belum ada
+        if (!$this->session->userdata('signnin_email')) {
+            $this->session->set_userdata('signnin_email', $email);
+        }
+
+        // Menyimpan data waktu percobaan login terakhir ke session
+        $this->session->set_userdata('last_login_attempt', time());
+
+        // Redirect kembali ke halaman login
+        redirect('admin/signnin');
     }
+
+
+
 
 
     public function registration()
@@ -143,6 +174,8 @@ class Admin extends CI_Controller
         $this->load->view('admin/forgotpassword');
         $this->load->view('backend/admin_footer');
     }
+
+
 
     public function logout()
     {

@@ -175,7 +175,90 @@ class Admin extends CI_Controller
         $this->load->view('backend/admin_footer');
     }
 
+    public function a_forgot_password()
+    {
+        $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 
+        if ($this->form_validation->run() == FALSE) {
+            $data['title'] = 'Halaman Reset Password';
+            $this->load->view('admin/forgotpassword', $data);
+        } else {
+            $email = $this->input->post('email', TRUE);
+            $clean = $this->security->xss_clean($email);
+            $userInfo = $this->Madmin->getUserInfoByEmail($email);
+
+            if (!$userInfo) {
+                $this->session->set_flashdata('error', 'Email address salah, silakan coba lagi.');
+                redirect('admin/signnin');
+            }
+
+            $token = $this->Madmin->insertToken($userInfo->id);
+            $qstring = $this->base64url_encode($token);
+            $url = site_url() . '/admin/reset_password/token/' . $qstring;
+            $link = '<a href="' . $url . '">' . $url . '</a>';
+
+            $message = '';
+            $message .= '<strong>Hai, anda menerima email ini karena ada permintaan untuk memperbaharui  
+                 password anda.</strong><br>';
+            $message .= '<strong>Silakan klik link ini:</strong> ' . $link;
+
+            echo $message; //send this through mail  
+            exit;
+        }
+    }
+
+
+    public function reset_password()
+    {
+        $token = $this->base64url_decode($this->uri->segment(4));
+        $cleanToken = $this->security->xss_clean($token);
+
+        $user_info = $this->Madmin->isTokenValid($cleanToken); //either false or array();          
+
+        if (!$user_info) {
+            $this->session->set_flashdata('sukses', 'Token tidak valid atau kadaluarsa');
+            redirect(site_url('admin/signnin'), 'refresh');
+        }
+
+        $data = array(
+            'title' => 'Halaman Reset Password ',
+            'nama' => $user_info->name,
+            'email' => $user_info->email,
+            'token' => $this->base64url_encode($token)
+        );
+
+        $this->form_validation->set_rules('password', 'Password', 'required|min_length[5]');
+        $this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
+
+        if ($this->form_validation->run() == FALSE) {
+            $this->load->view('admin/reset_password', $data);
+        } else {
+
+            $post = $this->input->post(NULL, TRUE);
+            $cleanPost = $this->security->xss_clean($post);
+            $hashed = password_hash($cleanPost['password'],PASSWORD_DEFAULT) ;
+            $cleanPost['password'] = $hashed;
+            $cleanPost['id'] = $user_info->id;
+            unset($cleanPost['passconf']);
+            if (!$this->Madmin->updatePassword($cleanPost)) {
+                $this->session->set_flashdata('sukses', 'Update password gagal.');
+            } else {
+                $this->session->set_flashdata('sukses', 'Password anda sudah  
+             diperbaharui. Silakan login.');
+            }
+            redirect(site_url('admin/signnin'), 'refresh');
+        }
+    }
+
+    public function base64url_encode($data)
+    {
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+
+    public function base64url_decode($data)
+    {
+        return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT));
+    }
 
     public function logout()
     {

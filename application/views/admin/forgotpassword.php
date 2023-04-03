@@ -10,9 +10,9 @@
         <h2><p><center>Anda lupa kata sandi ?</center></p></h2>
         <p>Masukkan alamat email Anda dan kami akan mengirimkan instruksi tentang cara mengatur ulang kata sandi Anda.</p>
         <br>
-            <form class="user" method="post" action="<?= base_url('home/a_forgotpassword'); ?>">
+            <form class="user" method="post" action="<?= base_url('Admin/a_forgot_password'); ?>">
                 <div class="form-group">
-                    <input type="text" class="form-control form-control-user" id="email" name="email"placeholder="Masukkan Alamat Email" required>
+                    <input type="text" class="form-control form-control-user" id="email" name="email" value="<?php echo set_value('email'); ?>" placeholder="Masukkan Alamat Email" required>
                 </div>
                     <button type="submit" class="btn btn-danger btn-user btn-block">Reset Password</button>
                 <hr>

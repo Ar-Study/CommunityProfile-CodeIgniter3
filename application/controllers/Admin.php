@@ -500,22 +500,28 @@ class Admin extends CI_Controller
     }
     public function galeri_update()
     {
-        if (!$this->session->userdata('admin_id')) {
+        if (!$this->session->userdata('email')) {
             redirect('admin/signnin');
         }
+
         $id = $this->input->post('id');
         $old_filename = $this->input->post('foto_old');
+        $old_filecv = $this->input->post('cv_old');
         $new_filename = $_FILES['foto']['name'];
+        $new_filecv = $_FILES['cv']['name'];
 
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi', 'required');
+        $this->form_validation->set_rules('github', 'Link Github', 'required');
 
         if ($this->form_validation->run() != false) {
             $where = array('Id_foto' => $id);
             $data = array(
                 'Nama_foto' => $this->input->post('nama'),
-                'Deskripsi_foto' => $this->input->post('deskripsi')
+                'Deskripsi_foto' => $this->input->post('deskripsi'),
+                'Portofolio' => $this->input->post('github')
             );
+
             if ($new_filename != "") {
                 $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
                 $config = array(
@@ -537,6 +543,31 @@ class Admin extends CI_Controller
                     $this->load->view('./admin/footer');
                     return;
                 }
+            }
+
+            if ($new_filecv != "") {
+                $update_filecv = time() . "-" . str_replace(' ', '-', $_FILES['cv']['name']);
+                $config = array(
+                    'upload_path' => './cv/',
+                    'allowed_types' => 'pdf',
+                    'max_size' => 2048,
+                    'file_name' => $update_filecv
+                );
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('cv')) {
+                    if (file_exists("./cv/" . $old_filecv)) {
+                        unlink("./cv/" . $old_filecv);
+                    }
+                    $data['CV'] = $update_filecv;
+                } else {
+                    $error = array('error' => $this->upload->display_errors());
+                    $this->load->view('./admin/header');
+                    $this->load->view('./admin/galeri_edit', $error);
+                    $this->load->view('./admin/footer');
+                    return;
+                }
+            } else {
+                $data['CV'] = $old_filecv;
             }
 
             $this->Madmin->update_data($where, $data, 'galeri');

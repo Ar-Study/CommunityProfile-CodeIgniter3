@@ -8,6 +8,7 @@ class Auth extends CI_Controller
         parent::__construct();
         $this->load->library('form_validation');
         $this->load->model('Madmin');
+        $this->load->helper(array('url','download'));
     }
     public function index()
     {
@@ -99,6 +100,12 @@ class Auth extends CI_Controller
             
         }
     }
+
+    public function lakukan_download($file_path){	
+        $lokasi = './cv/' . $file_path;			
+        force_download($lokasi, NULL);
+    }
+    
 
     public function detail_news($id){
         $where = array(

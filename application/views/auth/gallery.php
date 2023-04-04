@@ -30,7 +30,7 @@
               <p class="card-text"><?= $g->Deskripsi_foto; ?> <br> Bahasa : <?= $g->Bahasa; ?></p>
               <p class="card-text"></p>
               <a href="<?= $g->Portofolio; ?>" class="btn btn-primary">Github</a>
-              <a href="#" class="btn btn-primary">Unduh CV</a>
+              <a href="<?= base_url().'auth/lakukan_download/'.$g->CV ?>" class="btn btn-primary">Unduh CV</a>
             </div>
           </div>
           </div>

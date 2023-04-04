@@ -26,6 +26,8 @@
                                         <th>Nama</th>
                                         <th>Foto</th>
                                         <th>Deskripsi</th>
+                                        <th>Github</th>
+                                        <th>CV</th>
                                         <th>Modify</th>
                                         <th>Delete</th>
                                     </tr>
@@ -39,6 +41,8 @@
                                             <td><?= $g->Nama_foto ?></td>
                                             <td><img style="width: 100px;" src="<?= base_url('img/'.$g->Foto) ?>" alt=""></td>
                                             <td><?= $g->Deskripsi_foto ?></td>
+                                            <td><?= $g->Portofolio ?></td>
+                                            <td><?= $g->CV ?></td>
                                             <td><a href="<?= base_url('admin/galeri_edit/'.$g->Id_foto) ?>" class="btn btn-primary">Mengubah</a></td>
                                             <td>
                                                 <a class="btn btn-danger" data-toggle="modal" data-target="#hapuslah<?= $g->Id_foto ?>">Menghapus</a>

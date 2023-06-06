@@ -519,7 +519,8 @@ class Admin extends CI_Controller
             $data = array(
                 'Nama_foto' => $this->input->post('nama'),
                 'Deskripsi_foto' => $this->input->post('deskripsi'),
-                'Portofolio' => $this->input->post('github')
+                'Portofolio' => $this->input->post('github'),
+                'linkedin' => $this->input->post('linkedin')
             );
 
             if ($new_filename != "") {

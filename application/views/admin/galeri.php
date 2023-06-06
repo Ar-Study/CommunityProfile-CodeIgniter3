@@ -19,7 +19,7 @@
                             <h3 class="card-title"><a href="<?= base_url('admin/galeri_add') ?>" class="btn btn-primary">Tambahkan Data</a></h3>
                         </div>
                         <!-- /.card-header -->
-                        <div class="card-body">
+                        <div class="card-body overflow-auto">
                             <table id="example2" class="table table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -27,6 +27,7 @@
                                         <th>Foto</th>
                                         <th>Deskripsi</th>
                                         <th>Github</th>
+                                        <th>Linkedin</th>
                                         <th>CV</th>
                                         <th>Modify</th>
                                         <th>Delete</th>
@@ -42,6 +43,7 @@
                                             <td><img style="width: 100px;" src="<?= base_url('img/'.$g->Foto) ?>" alt=""></td>
                                             <td><?= $g->Deskripsi_foto ?></td>
                                             <td><?= $g->Portofolio ?></td>
+                                            <td><?= $g->linkedin ?></td>
                                             <td><?= $g->CV ?></td>
                                             <td><a href="<?= base_url('admin/galeri_edit/'.$g->Id_foto) ?>" class="btn btn-primary">Mengubah</a></td>
                                             <td>

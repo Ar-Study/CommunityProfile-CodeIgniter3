@@ -18,6 +18,11 @@
                 <input type="text" class="form-control border-0" name="github" placeholder="Masukan Link Github Anda" value="<?php echo $g->Portofolio; ?>">
                 <?php echo form_error('github'); ?>
             </div>
+            <div class="form-group">
+                <label for="">Link Linkedin</label>
+                <input type="text" class="form-control border-0" name="linkedin" placeholder="Masukan Link Linkedin Anda" value="<?php echo $g->linkedin; ?>">
+                <?php echo form_error('linkedin'); ?>
+            </div>
             <div class="custom-file">
                 
                 <label for="">Uploud CV </label>

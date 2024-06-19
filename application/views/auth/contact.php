@@ -1,27 +1,18 @@
 
-		<div class="bg-secondary py-5">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- END NAVBAR -->
 
 		<div class="section" style="background-color: #CFD2CF;">
 			<div class="container p-5 bg-light rounded" style="border: 1px solid #A2B5BB;">
 				<div class="row mb-5">
 					<div class="col-12 mb-5 order-2">
-						<form action="#" method="post">
+						<form action="<?php echo base_url() . 'auth/send'?>" method="post">
 							<div class="row">
 								<div class="col-md-6 form-group">
 									<label for="name">Nama</label>
-								<input type="text" id="name" class="form-control" required />
+								<input type="text" id="name" name="nama" class="form-control" required />
 							</div>
 							<div class="col-md-6 form-group">
 								<label for="phone">No Telepon</label>
-								<input type="text" id="phone" class="form-control" required />
+								<input type="text" id="phone" name ="phone" class="form-control" required />
 								</div>
 							</div>
 							<div class="row">
@@ -30,7 +21,7 @@
 							<div class="row">
 								<div class="col-md-12 form-group">
 									<label for="email">Email</label>
-									<input type="email" id="email" class="form-control" required />
+									<input type="email" id="email" name="email" class="form-control" required />
 								</div>
 							</div>
 							<div class="row">
@@ -40,7 +31,7 @@
 							</div>
 							<div class="row">
 								<div class="col-md-6 form-group">
-									<input type="submit" value="Kirim Pesan" class="btn btn-outline-black px-4 py-3 animated slideInLeft"/>
+									<input type="submit" value="Kirim Pesan" name="submit" class="btn btn-outline-black px-4 py-3 animated slideInLeft"/>
 								</div>
 							</div>
 						</form>

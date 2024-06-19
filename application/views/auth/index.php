@@ -26,8 +26,7 @@
 </head>
 
 <body>
-  <header role="banner">
-    <nav class="navbar navbar-expand-lg ">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
       <div class="container-fluid">
         <a class="navbar-brand" href="<?= base_url('auth/index'); ?>">SpyderBIT</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05"
@@ -43,7 +42,7 @@
               <a class="nav-link" href="<?= base_url('auth/profile'); ?>">Profil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="<?= base_url('auth/gallery'); ?>">Galeri</a>
+              <a class="nav-link" href="<?= base_url('auth/gallery'); ?>">Talent</a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?php if(uri_string() == 'auth/activity') echo "active" ?> " href="<?= base_url('auth/activity'); ?>">Kegiatan Kami</a>
@@ -59,7 +58,6 @@
         </div>
       </div>
     </nav>
-  </header>
   <!-- END HEADER -->
 
   <div class="slider-item overlay" data-stellar-background-ratio="0.5">
@@ -67,9 +65,6 @@
       <div class="row slider-text align-items-center justify-content-center">
         <div class="col-lg-12 text-center col-sm-12">
           <h1 class="mb-4" data-aos="fade-up" data-aos-delay="100">Kami membuat hal yang luar biasa.</h1>
-          <div class="btn-play-wrap mx-auto" data-aos="fade-up" data-aos-delay="200">
-            <a href="https://youtu.be/BBlJ0dyCeBA" data-fancybox data-ratio="2" class="btn-play"><span class="ion ion-ios-play"></span></a>
-          </div>
         </div>
       </div>
     </div>
@@ -106,7 +101,7 @@
       </div>
       <div class="row mt-5">
         <div class="col-12 text-center">
-          <p><a href="<?php echo base_url('auth/activity ')?>" class="btn btn-outline-white px-4 py-3">Lihat Lainnya</a></p>
+          <p><a href="<?php echo base_url('auth/activity ')?>" class="btn btn-outline-dark px-4 py-3">Lihat Lainnya</a></p>
         </div>
       </div>
     </div>
@@ -115,7 +110,7 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-5 ml-auto mb-5 order-2">
-        <span class="d-block text-uppercase text-primary" data-aos="fade-up">Siapa Kita</span>
+        <span class="d-block text-uppercase text-secondary" data-aos="fade-up">Siapa Kita</span>
           <h2 class="mb-4 section-title animated slideInLeft">Lakukan Hal-Hal yang Penting. Rencana. Membuat. Tumbuh.</h2>
         <p data-aos="fade-up">Komunitas Programmer merupakan sebuah komunitas koding di daerah Banyumas. Yang menyediakan forum untuk web developer dan programmer lainnya. Disamping itu komunitas programmer juga untuk diskusi seputar web development, programming, design, ataupun seputar IT lainnya.</p>
         <p><a href="<?php echo base_url("auth/profile") ?>" class="btn btn-outline-black" data-aos="fade-right">Kenali Lebih Lanjut</a></p>
@@ -128,57 +123,53 @@
       </div>
     </div>
   </div>
-  <div class="bg-primary py-5">
+  <div class="bg-secondary py-5">
     <div class="container text-center">
       <div class="row justify-content-center">
         <div class="col-lg-7">
-          <h3 class="text-white mb-2 font-weight-normal" data-aos="fade-right" data-aos-delay="">Mari berbuat lebih banyak bersama-sama kami</h3>
-          <p class="mb-0" data-aos="fade-right" data-aos-delay="200"><a href="<?= "https://wa.me/088232106692" ?>" class="btn btn-outline-white px-4 py-3">Gabung Sekarang</a></p>
+          <h3 class="mb-2 font-weight-normal text-white" data-aos="fade-right" data-aos-delay="">Mari berbuat lebih banyak bersama-sama kami</h3>
+          <p class="mb-0" data-aos="fade-right" data-aos-delay="200"><a href="<?= "https://docs.google.com/forms/d/e/1FAIpQLSfrZ97ljfbYUvSkzB78k4kWKKRyNwFRei4JhcD4Ubfy1PzxjA/viewform?usp=pp_url" ?>" class="btn btn-outline-light px-4 py-3 ">Gabung Sekarang</a></p>
         </div>
       </div>
     </div>
   </div>
   <!-- END CONTENT -->
 
-  <footer class="site-footer" role="contentinfo">
+  <footer class="bg-secondary text-white" role="contentinfo">
     <div class="container">
       <div class="row mb-5">
         <div class="col-md-6 mb-5">
-          <h3 class="mb-4">Tentang Kami</h3>
-          <p class="mb-5">Komunitas Programmer merupakan sebuah komunitas koding di daerah Banyumas. Yang menyediakan forum untuk web developer dan programmer lainnya. Disamping itu komunitas programmer juga untuk diskusi seputar web development, programming, design, ataupun seputar IT lainnya.</p>
+          <h3 class="mb-4 text-white">Tentang Kami</h3>
+          <p class="mb-5">SpyderBIT merupakan sebuah komunitas koding di daerah Banyumas. Yang menyediakan forum untuk web developer dan programmer lainnya. Disamping itu komunitas programmer juga untuk diskusi seputar web development, programming, design, ataupun seputar IT lainnya.</p>
           <ul class="list-unstyled footer-link d-flex footer-social">
-            <li><a href="#" class="p-2"><span class="fa fa-twitter"></span></a></li>
-            <li><a href="#" class="p-2"><span class="fa fa-facebook"></span></a></li>
-            <li><a href="#" class="p-2"><span class="fa fa-linkedin"></span></a></li>
-            <li><a href="#" class="p-2"><span class="fa fa-instagram"></span></a></li>
-            <li><a href="#" class="p-2"><span class="fa fa-telegram"></span></a></li>
+            <li><a href="https://www.instagram.com/programmerkomunitas/" class="p-2"><span class="fa fa-instagram"></span></a></li>
           </ul>
         </div>
         <div class="col-md-6 mb-5 pl-md-5">
           <div class="mb-5">
-            <h3 class="mb-4">Info Kontak</h3>
+            <h3 class="mb-4 text-white">Info Kontak</h3>
             <ul class="list-unstyled footer-link quick-contact">
               <li class="d-block">
-                <span class="d-block caption">Alamat:</span>
-                <span class="caption-text">Jl. Karen Indah I, Dusun III Karangdur, Karangduren, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah 53181</span>
+                <span class="d-block caption text-white">Alamat:</span>
+                <span class="caption-text text-white">Jl. Karen Indah I, Dusun III Karangdur, Karangduren, Kec. Sokaraja, Kabupaten Banyumas, Jawa Tengah 53181</span>
               </li>
               <li class="d-block">
-                <span class="d-block caption">Telepon:</span><span class="caption-text">+62 242 4942 290</span>
+                <span class="d-block caption text-white">Telepon:</span><span class="caption-text text-white">+62 882 3391 8738 (Azzah) </span>
               </li>
               <li class="d-block">
-                <span class="d-block caption">Email:</span><span class="caption-text">komunitasprogrammer@gmail.com</span>
+                <span class="d-block caption text-white">Email:</span><span class="caption-text text-white">programmerkomunitas@gmail.com</span>
               </li>
             </ul>
           </div>
         </div>
       </div>
       <div class="col-md-1 mb-5 ml-auto fixed-bottom py-5">
-        <a href="https://wa.me/088232106692" class="rounded-circle btn btn-success p-2 position-absolute bottom-50 end-50 fixed_bottom" target="_blank"><span class="fa fa-whatsapp fa-4x"></a>
+        <a href="https://wa.me/088233918738" class="rounded-circle btn btn-success p-2 position-absolute bottom-50 end-50 fixed_bottom" target="_blank"><span class="fa fa-whatsapp fa-4x"></a>
       </div>
       <div class="row">
         <div class="col-12 text-md-center text-left">
           <p class="copyright"><small>&copy;
-            <script>document.write(new Date().getFullYear());</script> Komunitas Programmer Millenial. All Rights Reserved.</small>
+            <script>document.write(new Date().getFullYear());</script> Komunitas Programmer Millenial - Spyderbit. All Rights Reserved.</small>
           </p>
       </div>
     </div>

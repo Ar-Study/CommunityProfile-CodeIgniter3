@@ -1,14 +1,4 @@
 
-  <div class="bg-secondary py-5">
-    <div class="container text-center">
-      <div class="row justify-content-center">
-        <div class="col-lg-7">
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- END NAVBAR -->
-
   <div class="section">
     <div class="container">
       <div class="row justify-content-center mb-5">
@@ -17,8 +7,9 @@
           <br>
           </div>
         </div>
-        <?php  foreach ($galeri as $g) { ?>
         <div class="row">
+        <?php  foreach ($galeri as $g) { ?>
+        
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
           <div class="media d-block media-custom text-center">
 
@@ -38,6 +29,7 @@
           </div>
         </div>
         <?php } ?>
+        </div>
     </div>
   </div>
 <!-- END CONTENT -->

@@ -39,7 +39,7 @@
                     <a href="<?php echo base_url() . './admin/index' ?>" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
-                    <a href="<?php echo base_url() . './admin/galeri' ?>" class="nav-link">Galeri</a>
+                    <a href="<?php echo base_url() . './admin/galeri' ?>" class="nav-link">Talent</a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="<?php echo base_url() . './admin/berita' ?>" class="nav-link">Berita</a>
@@ -103,7 +103,7 @@
                             <a href="<?php echo base_url() . './admin/galeri' ?>" class="nav-link">
                                 <i class="nav-icon far fa-image"></i>
                                 <p>
-                                    Gallery
+                                    Talent
                                 </p>
                             </a>
                         </li>

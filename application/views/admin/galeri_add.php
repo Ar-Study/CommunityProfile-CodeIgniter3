@@ -1,6 +1,6 @@
 <div class="content-wrapper">
         <form method="post" action="<?php echo base_url() . 'admin/galeri_add_act' ?>" enctype="multipart/form-data" class="p-5">
-            <h4 class="text-center">Tambah Galeri</h4>
+            <h4 class="text-center">Tambah Talent</h4>
             <div class="form-group">
                 <label for="">Nama Lengkap</label>
                 <input type="text" class="form-control border-0" name="nama" placeholder="Nama Lengkap">
@@ -9,6 +9,11 @@
             <div class="form-group">
                 <label for="">Deskripsi Diri</label>
                 <input type="text" class="form-control border-0" name="deskripsi" placeholder="Jelaskan tentang dirimu disini">
+                <?php echo form_error('deskripsi'); ?>
+            </div>
+            <div class="form-group">
+                <label for="">Bahasa yang dikuasai</label>
+                <input type="text" class="form-control border-0" name="bahasa" placeholder="Bahasa pemrograman apa yang dikuasai">
                 <?php echo form_error('deskripsi'); ?>
             </div>
             <div class="form-group">

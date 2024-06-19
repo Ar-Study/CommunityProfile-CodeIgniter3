@@ -1,6 +1,13 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
+//Load Composer's autoloader
+require 'vendor/autoload.php';
+
 class Auth extends CI_Controller
 {
     public function __construct()
@@ -14,6 +21,8 @@ class Auth extends CI_Controller
     {
         $data['title'] =  "Komunitas Programmer Millenial | Diskusi, Berkarya, Dan Berkontribusi";
         $data['kegiatan'] = $this->Madmin->get_data('kegiatan')->result();
+        $data['kontak'] =  $this->Madmin->get_data('kontak')->result();
+        $data['sosmed'] =  $this->Madmin->get_data('sosmed')->result();
         $this->load->view('auth/index', $data);
     }
 
@@ -124,4 +133,40 @@ class Auth extends CI_Controller
         $this->load->view('auth/contact');
         $this->load->view('frontend/auth_footer');
     }
+
+    public function send(){
+        
+            
+        $mail = new PHPMailer(true); // Menggunakan konstruktor dengan parameter true untuk mengaktifkan penanganan pengecualian
+
+        $nama = $this->input->post('nama');
+        $phone = $this->input->post('phone');
+        $email = $this->input->post('email');
+        $pesan = $this->input->post('message');
+        
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->SMTPAuth = true;
+        $mail->Username = "programmerkomunitas@gmail.com";
+        $mail->Password = "kwajwsskqfbsocwk";
+        $mail->SMTPSecure = "tls";
+        $mail->Port = 587;
+        
+        $mail->setFrom($email, $nama);
+        $mail->addAddress('programmerkomunitas@gmail.com');
+        
+        // $mail->addReplyTo('programmerkomunitas@gmail.com');
+        
+        $mail->isHTML(true);
+        $mail->Subject = 'Pesan dari website';
+        $mail->Body = $pesan;
+        
+        try {
+            $mail->send();
+            echo "Berhasil";
+        } catch (Exception $e) {
+            echo "Gagal: " . $mail->ErrorInfo;
+        }
+        
+        } 
 }

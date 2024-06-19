@@ -1,11 +1,5 @@
-<div class="bg-secondary py-5">
-    <div class="container text-center">
-        <div class="row justify-content-center">
-            <div class="col-lg-7">
-            </div>
-        </div>
-    </div>
-    <div class="section" >
+
+    <div class="section" style="background-color: #CFD2CF;" >
         <div class="container p-5 bg-light rounded" style="border: 1px solid #A2B5BB;">
             <h5 style="background-color: LightGray;" class="font-weight-normal text-center animated slideInDown">Berita seputar dunia teknologi dan programming</h5>
             <br>
@@ -20,7 +14,7 @@
                             <div class="card-body">
                                 <h5 class="card-title"><?= $b->Judul_berita; ?></h5>
                                 <p class="card-text"><?= substr($b->Deskripsi_berita, 0, 100); ?>...</p>
-                                <a href="<?= base_url('auth/detail_news/') . $b->Id_berita; ?> " class="btn btn-primary">Go somewhere</a>
+                                <a href="<?= base_url('auth/detail_news/') . $b->Id_berita; ?> " class="btn btn-outline-black">Go somewhere</a>
                             </div>
                         </div>
                     </div>

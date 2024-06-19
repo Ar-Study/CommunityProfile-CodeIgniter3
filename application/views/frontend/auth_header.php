@@ -27,9 +27,8 @@
 </head>
 
 <body>
-  <header role="banner">
-    <nav class="navbar navbar-expand-lg  bg-dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid ">
         <a class="navbar-brand " href="<?= base_url('auth/index'); ?>">SpyderBIT</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample05"
           aria-controls="navbarsExample05" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,7 +43,7 @@
               <a class="nav-link <?php if (uri_string() == 'auth/profile') echo "active" ?>" href="<?= base_url('auth/profile'); ?>">Profil</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link <?php if (uri_string() == 'auth/gallery') echo "active" ?>" href="<?= base_url('auth/gallery'); ?>">Galeri</a>
+              <a class="nav-link <?php if (uri_string() == 'auth/gallery') echo "active" ?>" href="<?= base_url('auth/gallery'); ?>">Talent</a>
             </li>
             <li class="nav-item">
               <a class="nav-link <?php if(uri_string() == 'auth/activity') echo "active" ?> " href="<?= base_url('auth/activity'); ?>">Kegiatan Kami</a>
@@ -59,5 +58,4 @@
         </div>
       </div>
     </nav>
-  </header>
   <!-- END HEADER -->

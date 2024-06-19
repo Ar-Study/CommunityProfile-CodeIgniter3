@@ -1,7 +1,7 @@
 <div class="content-wrapper">
     <?php foreach ($galeri as $g) { ?>
         <form method="post" action="<?php echo base_url() . 'admin/galeri_update' ?>" enctype="multipart/form-data" class="p-5">
-            <h4 class="text-center">Mengubah Galeri</h4>
+            <h4 class="text-center">Mengubah Talent</h4>
             <div class="form-group">
                 <label for="">Nama Lengkap</label>
                 <input type="text" class="form-control border-0" name="nama" placeholder="Nama Lengkap" value="<?php echo $g->Nama_foto;  ?>">
@@ -11,6 +11,11 @@
             <div class="form-group">
                 <label for="">Deskripsi Diri</label>
                 <input type="text" class="form-control border-0" name="deskripsi" placeholder="Jelaskan tentang dirimu disini" value="<?php echo $g->Deskripsi_foto; ?>">
+                <?php echo form_error('deskripsi'); ?>
+            </div>
+            <div class="form-group">
+                <label for="">Bahasa yang dikuasai</label>
+                <input type="text" class="form-control border-0" name="bahasa" placeholder="Jelaskan tentang dirimu disini" value="<?php echo $g->Bahasa; ?>">
                 <?php echo form_error('deskripsi'); ?>
             </div>
             <div class="form-group">

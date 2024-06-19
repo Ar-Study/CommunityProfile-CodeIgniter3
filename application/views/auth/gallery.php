@@ -1,15 +1,6 @@
 
-  <div class="bg-secondary py-5">
-    <div class="container text-center">
-      <div class="row justify-content-center">
-        <div class="col-lg-7">
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- END NAVBAR -->
 
-  <div class="section">
+  <div class="section"  >
     <div class="container">
       <div class="row justify-content-center mb-5">
         <div class="col-md-8 text-center" data-aos="fade-up" data-aos-delay="">
@@ -17,8 +8,8 @@
           <br>
           </div>
         </div>
-        <?php  foreach (array_slice($galeri, 0, 5) as $g) { ?>
         <div class="row">
+        <?php  foreach (array_slice($galeri, 0, 3) as $g) { ?>
         <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
           <div class="media d-block media-custom text-center">
 
@@ -27,17 +18,19 @@
             <img src="<?php echo base_url('img/') . $g->Foto  ?>" class="card-img-top img-fluid" alt="Image Placeholder">
             <div class="card-body">
               <h5 class="card-title"><?php echo $g->Nama_foto ?></h5>
-              <p class="card-text"><?= $g->Deskripsi_foto; ?> <br> Bahasa : <?= $g->Bahasa; ?></p>
+              <p class="card-text text-black"><?= $g->Deskripsi_foto; ?> <br> Bahasa : <?= $g->Bahasa; ?></p>
               <p class="card-text"></p>
-              <a href="<?= $g->Portofolio; ?>" class="btn btn-primary">Github</a>
-              <a href="<?= $g->linkedin; ?>" class="btn btn-primary">Linkedin</a>
-              <hr>
-              <a href="<?= base_url().'auth/lakukan_download/'.$g->CV ?>" class="btn btn-primary">Unduh CV</a>
+              <a href="<?= $g->Portofolio; ?>" class="btn btn-dark">Github</a>
+              <a href="<?= $g->linkedin; ?>" class="btn btn-dark">Linkedin</a>
+              <br>
+              <br>
+              <a href="<?= base_url().'auth/lakukan_download/'.$g->CV ?>" class="btn btn-dark">Unduh CV</a>
             </div>
           </div>
           </div>
         </div>
         <?php } ?>
+        </div>
     <div class="bg-white py-5">
       <div class="container">
           <div class="col-lg-7">

@@ -451,19 +451,21 @@ class Admin extends CI_Controller
     public function galeri_add_act()
     {
         if (!$this->session->userdata('email')) {
-            redirect('admin/signnin');
+            redirect('admin/signin');
         }
+        
         $this->form_validation->set_rules('nama', 'Nama', 'required');
         $this->form_validation->set_rules('deskripsi', 'Deskripsi Diri', 'required');
+        
         if ($this->form_validation->run() != false) {
             $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
-            $config['upload_path']          = './img/';
-            $config['allowed_types']        = 'jpeg|jpg|png';
-            $config['max_size']             = 2048;
-            $config['file_name']            = $update_filename;
-
+            $config['upload_path'] = './img/';
+            $config['allowed_types'] = 'jpeg|jpg|png';
+            $config['max_size'] = 2048;
+            $config['file_name'] = $update_filename;
+        
             $this->load->library('upload', $config);
-
+        
             if (!$this->upload->do_upload('foto')) {
                 echo "Gagal Tambah";
             } else {
@@ -471,19 +473,41 @@ class Admin extends CI_Controller
                 $foto = $foto['file_name'];
                 $nama = $this->input->post('nama');
                 $isi = $this->input->post('deskripsi');
+        
                 $data = array(
                     'Nama_foto' => $nama,
                     'Deskripsi_foto' => $isi,
                     'Foto' => $foto,
+                    'Bahasa' => $this->input->post('bahasa'),
+                    'Portofolio' => $this->input->post('github'),
+                    'linkedin' => $this->input->post('linkedin')
                 );
-                $this->Madmin->insert_data($data, 'galeri');
-                redirect(base_url() . 'admin/galeri');
+        
+                // Upload CV
+                $config_cv['upload_path'] = './cv/';
+                $config_cv['allowed_types'] = 'pdf';
+                $config_cv['max_size'] = 2048;
+                $update_filename_cv = time() . "-" . str_replace(' ', '-', $_FILES['cv']['name']);
+                $config_cv['file_name'] = $update_filename_cv;
+        
+                $this->upload->initialize($config_cv);
+        
+                if (!$this->upload->do_upload('cv')) {
+                    echo "Gagal Tambah";
+                } else {
+                    $cv = $this->upload->data();
+                    $cv = $cv['file_name'];
+                    $data['CV'] = $cv;
+                    $this->Madmin->insert_data($data, 'galeri');
+                    redirect(base_url() . 'admin/galeri');
+                }
             }
         } else {
             $this->load->view('./admin/header');
             $this->load->view('./admin/galeri_add');
             $this->load->view('./admin/footer');
         }
+        
     }
     public function galeri_edit($id)
     {
@@ -519,6 +543,7 @@ class Admin extends CI_Controller
             $data = array(
                 'Nama_foto' => $this->input->post('nama'),
                 'Deskripsi_foto' => $this->input->post('deskripsi'),
+                'Bahasa' => $this->input->post('bahasa'),
                 'Portofolio' => $this->input->post('github'),
                 'linkedin' => $this->input->post('linkedin')
             );
@@ -760,4 +785,337 @@ class Admin extends CI_Controller
         redirect(base_url() . 'admin/kegiatan');
     }
 
+    public function profile(){
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $data['profil'] = $this->Madmin->get_data('profil')->result();
+        $data['judul'] = "SpyderBit | Admin - Profile";
+        $this->load->view("./admin/header",$data);
+        $this->load->view("./admin/profile",$data);
+        $this->load->view("./admin/footer");
+    }
+
+    public function profile_add()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $data['judul'] = "SpyderBit | Admin - Tambah Data Informasi Profil";
+        $this->load->view('./admin/header',$data);
+        $this->load->view('./admin/profile_add');
+        $this->load->view('./admin/footer');
+    }
+
+    public function profile_add_act()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('content', 'Content', 'required');
+        if ($this->form_validation->run() != false) {
+            $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
+            $config['upload_path']          = './img/';
+            $config['allowed_types']        = 'jpeg|jpg|png';
+            $config['max_size']             = 2048;
+            $config['file_name']            = $update_filename;
+
+            $this->load->library('upload', $config);
+
+            if (!$this->upload->do_upload('foto')) {
+                $nama = $this->input->post('nama');
+                $isi = $this->input->post('content');
+                $data = array(
+                    'judul_profil' => $nama,
+                    'isi_profil' => $isi
+                );
+                $this->Madmin->insert_data($data, 'profil');
+                redirect(base_url() . 'admin/profile');
+            } else {
+                $foto = $this->upload->data();
+                $foto = $foto['file_name'];
+                $nama = $this->input->post('nama');
+                $isi = $this->input->post('content');
+                $data = array(
+                    'judul_profil' => $nama,
+                    'foto_profil' => $foto,
+                    'isi_profil' => $isi
+                );
+                $this->Madmin->insert_data($data, 'profil');
+                redirect(base_url() . 'admin/profile');
+            }
+        } else {
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/profile_add');
+            $this->load->view('./admin/footer');
+        }
+
+
+    }
+
+    public function profile_edit($id)
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $data['judul'] = "SpyderBit | Admin - Ubah Data Profil";
+        $where = array(
+            'id_profil' => $id
+        );
+        $data['profil'] = $this->Madmin->edit_data($where, 'profil')->result();
+        $this->load->view('./admin/header',$data);
+        $this->load->view('./admin/profile_edit', $data);
+        $this->load->view('./admin/footer');
+    }
+
+    public function profile_update()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        
+        $id = $this->input->post('id');
+        $old_filename = $this->input->post('foto_old');
+        $new_filename = $_FILES['foto']['name'];
+        
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('content', 'Content', 'required');       
+        if ($this->form_validation->run() != false) {
+            $update_filename = $old_filename;
+        
+            if ($new_filename != '') {
+                $update_filename = time() . "-" . str_replace(' ', '-', $_FILES['foto']['name']);
+                $config = [
+                    'upload_path' => './img/',
+                    'allowed_types' => 'jpeg|jpg|png',
+                    'max_size' => 2048,
+                    'file_name' => $update_filename
+                ];
+                $this->load->library('upload', $config);
+                if ($this->upload->do_upload('foto')) {
+                    if (file_exists("./img/" . $old_filename)) {
+                        unlink("./img/" . $old_filename);
+                    }
+                } else {
+                    $update_filename = $old_filename;
+                }
+            }
+        
+            $where = array(
+                'id_profil' => $id
+            );
+        
+            $data = array(
+                'judul_profil' => $this->input->post('nama'),
+                'foto_profil' => $update_filename,
+                'isi_profil' => $this->input->post('content'),
+            );
+        
+            $this->Madmin->update_data($where, $data, 'profil');
+            redirect(base_url() . 'admin/profile');
+        } else {
+            $where = array(
+                'id_profil' => $id
+            );
+        
+            $data['profil'] = $this->Madmin->edit_data($where, 'profil')->result();
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/profile_edit', $data);
+            $this->load->view('./admin/footer');
+        }
+        
+    }
+
+    public function profile_hapus()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $id = $this->input->post('id');
+        $where = array(
+            'id_profil' => $id
+        );
+
+        $old_filename = $this->input->post('foto_old');
+        if (file_exists("./img/" . $old_filename)) {
+            unlink("./img/" . $old_filename);
+            $this->Madmin->delete_data($where, 'profil');
+        }
+        redirect(base_url() . 'admin/profile');
+    }
+    public function kontak(){
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $data['kontak'] = $this->Madmin->get_data('kontak')->result();
+        $data['judul'] = "SpyderBit | Admin - Kontak";
+        $this->load->view("./admin/header",$data);
+        $this->load->view("./admin/kontak",$data);
+        $this->load->view("./admin/footer");
+    }
+
+    public function kontak_edit($id)
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $data['judul'] = "SpyderBit | Admin - Ubah Data Kontak";
+        $where = array(
+            'id_kontak' => $id
+        );
+        $data['kontak'] = $this->Madmin->edit_data($where, 'kontak')->result();
+        $this->load->view('./admin/header',$data);
+        $this->load->view('./admin/kontak_edit', $data);
+        $this->load->view('./admin/footer');
+    }
+
+    public function kontak_update()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        
+        $id = $this->input->post('id');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('nomor', 'Nomor', 'required');   
+        $this->form_validation->set_rules('email', 'Email', 'required');     
+        if ($this->form_validation->run() != false) {
+             $where = array(
+                'id_kontak' => $id
+            );
+        
+            $data = array(
+                'alamat' => $this->input->post('nama'),
+                'nomor' => $this->input->post('nomor'),
+                'email' => $this->input->post('email'),
+            );
+        
+            $this->Madmin->update_data($where, $data, 'kontak');
+            redirect(base_url() . 'admin/kontak');
+        } else {
+            $where = array(
+                'id_kontak' => $id
+            );
+        
+            $data['profil'] = $this->Madmin->edit_data($where, 'kontak')->result();
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/kontak_edit', $data);
+            $this->load->view('./admin/footer');
+        }
+        
+    }
+
+
+    public function sosmed(){
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $data['sosmed'] = $this->Madmin->get_data('sosmed')->result();
+        $data['judul'] = "SpyderBit | Admin - Kontak";
+        $this->load->view("./admin/header",$data);
+        $this->load->view("./admin/sosmed",$data);
+        $this->load->view("./admin/footer");
+    }
+
+    public function sosmed_add()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $data['judul'] = "SpyderBit | Admin - Tambah Data Sosial Media";
+        $this->load->view('./admin/header',$data);
+        $this->load->view('./admin/sosmed_add');
+        $this->load->view('./admin/footer');
+    }
+
+    public function sosmed_add_act()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('url', 'URl', 'required');
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required');
+        if ($this->form_validation->run() != false) {
+                $nama = $this->input->post('nama');
+                $url = $this->input->post('url');
+                $jenis = $this->input->post('jenis');
+                $data = array(
+                    'nama_pengguna' => $nama,
+                    'url' => $url,
+                    'jenis_sosmed' => $jenis
+                );
+                $this->Madmin->insert_data($data, 'sosmed');
+                redirect(base_url() . 'admin/sosmed');
+        } else {
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/sosmed_add');
+            $this->load->view('./admin/footer');
+        }
+    }
+
+    public function sosmed_edit($id)
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $data['judul'] = "SpyderBit | Admin - Ubah Data Sosial Media";
+        $where = array(
+            'id_sosmed' => $id
+        );
+        $data['sosmed'] = $this->Madmin->edit_data($where, 'sosmed')->result();
+        $this->load->view('./admin/header',$data);
+        $this->load->view('./admin/sosmed_edit', $data);
+        $this->load->view('./admin/footer');
+    }
+    
+    public function sosmed_update()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        
+        $id = $this->input->post('id');
+        $this->form_validation->set_rules('nama', 'Nama', 'required');
+        $this->form_validation->set_rules('url', 'URL', 'required');   
+        $this->form_validation->set_rules('jenis', 'Jenis', 'required');     
+        if ($this->form_validation->run() != false) {
+             $where = array(
+                'id_sosmed' => $id
+            );
+        
+            $data = array(
+                'nama_pengguna' => $this->input->post('nama'),
+                'url' => $this->input->post('url'),
+                'jenis_sosmed' => $this->input->post('jenis'),
+            );
+        
+            $this->Madmin->update_data($where, $data, 'sosmed');
+            redirect(base_url() . 'admin/sosmed');
+        } else {
+            $where = array(
+                'id_sosmed' => $id
+            );
+        
+            $data['profil'] = $this->Madmin->edit_data($where, 'sosmed')->result();
+            $this->load->view('./admin/header');
+            $this->load->view('./admin/sosmed_edit', $data);
+            $this->load->view('./admin/footer');
+        }
+        
+    }
+    public function sosmed_hapus()
+    {
+        if (!$this->session->userdata('email')) {
+            redirect('admin/signnin');
+        }
+        $id = $this->input->post('id');
+        $where = array(
+            'id_sosmed' => $id
+        );
+
+        $this->Madmin->delete_data($where, 'sosmed');
+        redirect(base_url() . 'admin/sosmed');
+    }
 }

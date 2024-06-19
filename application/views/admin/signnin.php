@@ -37,9 +37,6 @@
     
     <!-- /.social-auth-links -->
     <hr/>
-    <div class="text-center">
-        <h5><a href="<?php echo base_url('admin/forgotpassword'); ?>" style="color:#ff0000;">Lupa Password?</a></h5>
-    </div>
   </div>
   <!-- /.login-box-body -->
 </div>

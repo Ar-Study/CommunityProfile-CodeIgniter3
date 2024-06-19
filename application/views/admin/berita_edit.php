@@ -9,7 +9,7 @@
                 
             </div>
             <div class="form-group">
-                <input type="hidden" name="content" value="<?= $b->Deskripsi_berita ?>">
+                <input type="hidden" name="content" value="">
                 <div id="editor" style="min-height: 160px;">
                     <?= $b->Deskripsi_berita ?>
                 </div>

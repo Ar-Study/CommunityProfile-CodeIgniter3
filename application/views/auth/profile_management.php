@@ -1,16 +1,4 @@
 
-  <div class="bg-secondary py-5">
-    <div class="container text-center">
-      <div class="row justify-content-center">
-        <div class="col-lg-7">
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- END NAVBAR -->
-
-<br>
-<br>
   <div class="section">
     <div class="container">
     <div class="col-md-8 text-lefth" data-aos="fade-up" data-aos-delay="">

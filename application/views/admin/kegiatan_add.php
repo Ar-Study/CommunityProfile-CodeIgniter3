@@ -12,7 +12,7 @@
             <?php echo form_error('content'); ?>
         </div>
         <div class="form-group">
-            <label>Tempat Pelaksanaan</label>
+            <label>Tempat Pelaksanaans</label>
             <input type="text" class="form-control border-0" name="lokasi" placeholder="Lokasi Kegiatan">
             <?php echo form_error('lokasi');  ?>
         </div>

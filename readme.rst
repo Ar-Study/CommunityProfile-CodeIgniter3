@@ -74,6 +74,8 @@ contributors to the CodeIgniter project and you, the CodeIgniter user.
 Screenshot
 ***************
 
+.. image:: https://github.com/Ar-Study/CommunityProfile-CodeIgniter3/assets/72682729/7a0d6bd8-6d6a-4e92-b4bb-9cc6c0481f6b
+   :alt: Screenshot
 .. image:: https://github.com/Ar-Study/CommunityProfile-CodeIgniter3/assets/72682729/d183790a-db9a-4775-9418-2e315e49d9dc
    :alt: Screenshot
 

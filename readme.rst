@@ -76,7 +76,7 @@ Screenshot
 
 .. image:: https://github.com/Ar-Study/CommunityProfile-CodeIgniter3/assets/72682729/7a0d6bd8-6d6a-4e92-b4bb-9cc6c0481f6b
    :alt: Screenshot
-.. image:: https://github.com/Ar-Study/CommunityProfile-CodeIgniter3/assets/72682729/d183790a-db9a-4775-9418-2e315e49d9dc
+.. image:: https://github.com/Ar-Study/CommunityProfile-CodeIgniter3/assets/72682729/50440213-0868-4b8b-a297-df9899e8ec57
    :alt: Screenshot
 
 

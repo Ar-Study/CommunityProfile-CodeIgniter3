@@ -70,8 +70,8 @@ Acknowledgement
 The CodeIgniter team would like to thank EllisLab, all the
 contributors to the CodeIgniter project and you, the CodeIgniter user.
 
-***************
-Result
-***************
-!(https://github.com/Ar-Study/CommunityProfile-CodeIgniter3/assets/72682729/ee45062a-a890-40b6-9f93-6464f50d72a9)
+## Screenshots
+
+![Screenshot](https://github.com/Ar-Study/CommunityProfile-CodeIgniter3/raw/main/assets/ee45062a-a890-40b6-9f93-6464f50d72a9.png)
+
 
